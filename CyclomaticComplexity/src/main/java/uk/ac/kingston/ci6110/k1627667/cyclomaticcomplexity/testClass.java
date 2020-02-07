@@ -10,5 +10,15 @@ package uk.ac.kingston.ci6110.k1627667.cyclomaticcomplexity;
  * @author james
  */
 public class testClass {
+    private int counter = 0;
     
+    public void setCounter(int c)
+    {
+        this.counter = c;
+    }
+    public int getCounter()
+    {
+        return this.counter;
+    }
+
 }
