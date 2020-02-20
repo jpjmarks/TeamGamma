@@ -16,6 +16,7 @@ public class Main {
     File file = new File("/Users/james/Ball.txt"); 
     Scanner sc = new Scanner(file);
     String outp = "";
+    String pushTest = "Hello My Name Is John";
     while (sc.hasNextLine()) 
     {
       outp = outp + sc.nextLine().trim();
