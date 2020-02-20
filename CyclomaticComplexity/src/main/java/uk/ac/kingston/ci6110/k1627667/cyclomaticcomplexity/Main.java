@@ -15,16 +15,19 @@ public class Main {
   { 
     File file = new File("/Users/james/Ball.txt"); 
     Scanner sc = new Scanner(file);
+    String outp = "";
     while (sc.hasNextLine()) 
-    System.out.println(sc.nextLine());
-    
+    {
+      outp = outp + sc.nextLine().trim();
+    }
+    System.out.println(outp);
     }
 }
 
 // formatting for windows file pathway
 // ("C:\\Users\\pankaj\\Desktop\\test.txt");
 
-
+// formatting for MacOS
 // "/Users/james/Ball.txt"
 
 
