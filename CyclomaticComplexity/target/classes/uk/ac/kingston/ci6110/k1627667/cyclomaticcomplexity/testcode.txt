@@ -1,0 +1,177 @@
+import java.util.Scanner;	 
+public class Main
+{
+    public static void main(String args[])
+    {
+        Board board = new Board();
+        Player p1 = new Player("X");
+        Player p2 = new Player("O");
+        Scanner input = new Scanner(System.in);
+        System.out.println("What is Player one's name?");
+        p1.setName(input.nextLine());
+        System.out.println("Player one's name is "+p1.getName());
+        System.out.println("What is Player two's name?");
+        p2.setName(input.nextLine());
+        System.out.println("Player two's name is "+p2.getName());
+        String p1Name = p1.getName();
+        String p2Name = p2.getName();
+        String gameState = board.getGameState();
+        p1.setGamePiece("X");
+        p2.setGamePiece("O");
+        String p1GP = p1.getGamePiece();
+        String p2GP = p2.getGamePiece();
+        int turnCounter = 0;
+        int roundCounter = 0;
+        String xCoord = "";
+        String yCoord = "";
+        int xCo = 0;
+        int yCo = 0;
+        Boolean tryCheck = true;
+        while (gameState.equals("In Play"))
+        { 
+            if (roundCounter%2 == 0)
+            {
+                turnCounter = 1;
+            }
+            else
+            {
+                turnCounter = 3;
+            }
+            while (gameState.equals("In Play"))
+            {
+                if(turnCounter==1||turnCounter==2)
+                {
+                    xCoord = "";
+                    yCoord = "";
+                    xCo = 0;
+                    yCo = 0;
+                    tryCheck = true;
+                    System.out.println("It's "+p1Name+"'s turn. "+p1Name+" is "+p1GP);
+                    System.out.println("Please enter the row for where to place your next go.");
+                    yCoord = input.nextLine(); 
+                    System.out.println("Please enter the column for where to place your next go.");
+                    xCoord = input.nextLine();
+                    try
+                    {
+                        yCo = Integer.parseInt(yCoord);
+                    }
+                    catch(Exception e)
+                    {
+                        tryCheck = false;
+                    }
+
+                     try
+                    {
+                        xCo = Integer.parseInt(xCoord);
+                    }
+                    catch(Exception e)
+                    {
+                        tryCheck = false;
+                        System.out.println("exception");
+                    }
+
+                    if(yCo < 1 || yCo > 4 || xCo < 1 || xCo > 4 && tryCheck)
+                    {
+                        System.out.println("Column and rows needs to be between 1 to 4");
+                    }   
+                    else
+                    {
+                        turnCounter = board.placeMove(yCo,xCo,p1GP,turnCounter);
+                        gameState = board.getGameState();
+                    }      
+                    if (gameState.equals("Winner"))
+                    {
+                        System.out.println("We have a winner! Winner-Winner Chicken Dinner");
+                        p1.addScore();
+                    }  
+                }
+                
+                else if(turnCounter==3||turnCounter==4)
+                {
+                    xCoord = "";
+                    yCoord = "";
+                    xCo = 0;
+                    yCo = 0;
+                    tryCheck = true;
+                    System.out.println("It's "+p2Name+"'s turn. "+p2Name+" is "+p2GP);
+                    System.out.println("Please enter the row for where to place your next go.");
+                    yCoord = input.nextLine();
+                    System.out.println("Please enter the column for where to place your next go.");
+                    xCoord = input.nextLine();
+                    try
+                    {
+                        yCo = Integer.parseInt(yCoord);
+                    }
+                    catch(Exception e)
+                    {
+                        tryCheck = false;
+                    }
+
+                     try
+                    {
+                        xCo = Integer.parseInt(xCoord);
+                    }
+                    catch(Exception e)
+                    {
+                        tryCheck = false;
+                    }
+                    
+                    if(xCo < 1 || xCo > 4 || yCo < 1 || yCo > 4 && tryCheck)
+                    {
+                        System.out.println("Column and rows needs to be between 1 to 4");
+                    }   
+                    else
+                    {
+                        turnCounter = board.placeMove(yCo,xCo,p2GP,turnCounter);
+                        if (turnCounter == 5)
+                        {
+                            turnCounter = 1;
+                        }
+                        gameState = board.getGameState();
+                    }
+                    if (gameState.equals("Winner"))
+                    {
+                        System.out.println("We have a winner! Winner-Winner Chicken Dinner");
+                        p2.addScore();
+                    }
+                }
+            }
+            Boolean cIn = false;
+            System.out.println("Do you want to continue please enter 'Y' or 'N'");
+            while (!cIn)
+            {
+                String cont = (input.nextLine());
+                if (cont.equals("Y")||cont.equals("y"))
+                {
+                    cIn = true;
+                    board.resetBoard();
+                    roundCounter ++;
+                }
+                else if (cont.equals("N")||cont.equals("n"))
+                {
+                    cIn = true;
+                    int p1Score = p1.getScore();
+                    int p2Score = p2.getScore();
+                    if(p1Score>p2Score)
+                    {
+                        System.out.println("Good job "+p1Name+" you beat "+p2Name+" by "+p1Score+ " to "+p2Score+"!");
+                    }
+                    else if(p1Score<p2Score)
+                    {
+                        System.out.println("Good job "+p2Name+" you beat "+p2Name+" by "+p2Score+ " to "+p1Score+"!");
+                    }
+                    else if (p1Score==p2Score)
+                    {
+                        System.out.println("It was a draw! You both won "+p1Score+" games each!");
+                    }
+                }
+                else
+                {
+                    cIn = false;
+                    System.out.println("Sorry that is not a 'Y' or an 'N'. Please try again.");
+                }
+            }
+            gameState = board.getGameState();
+        }
+    }
+}
