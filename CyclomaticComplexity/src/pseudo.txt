@@ -56,6 +56,7 @@ JM
 JK
 Returns	Each return that isn't the last statement of a method.
 
-
+JK
+Comment and string tests
 
 https://www.leepoint.net/principles_and_practices/complexity/complexity-java-method.html

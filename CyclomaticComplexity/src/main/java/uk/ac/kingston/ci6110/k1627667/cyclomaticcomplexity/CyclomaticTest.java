@@ -119,7 +119,12 @@ public class CyclomaticTest
 
         return 0;
     }
+//JK
+    public ArrayList<String> commentTest(ArrayList<String> method)
+    {
 
+        return method;
+    }
     
 }
 
