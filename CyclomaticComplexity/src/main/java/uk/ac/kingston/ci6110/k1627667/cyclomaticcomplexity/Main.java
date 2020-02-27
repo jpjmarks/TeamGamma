@@ -26,7 +26,7 @@ public class Main
       outArray.add(sc2.nextLine().trim());
     }
     CyclomaticTest newTest = new CyclomaticTest();
-    newTest.CycloTests(outArray);
+    newTest.CycloTests(outArray)p[2-]
 
     // Get code to readable Point
     // Remove Class

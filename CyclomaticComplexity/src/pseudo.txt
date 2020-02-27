@@ -23,7 +23,6 @@ JK
 JM
 for loops
 
-
 JK
 while loops
 
@@ -52,10 +51,7 @@ JK
 And (&&) Conditons
 
 JM
-*? Conditions
-
-JK
-*: Conditions
+*? : Conditions
 
 JK
 Returns	Each return that isn't the last statement of a method.
