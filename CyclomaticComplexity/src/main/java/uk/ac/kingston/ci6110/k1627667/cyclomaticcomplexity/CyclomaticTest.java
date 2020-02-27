@@ -21,7 +21,7 @@ public class CyclomaticTest
     {
         return this.counter;
     }
-
+//JM
     public /*ArrayList*/ void CycloTests(ArrayList<String> file)
     {
         for (int i = 0; i < file.size(); i++) 
@@ -29,90 +29,91 @@ public class CyclomaticTest
           System.out.println("Line " + i + ": " + file.get(i));
         }
     }
-
+//JK
     public int ifTest(ArrayList<String> method)
     {
 
         return 0;
     }
-
+//JM
     public int caseTest(ArrayList<String> method)
     {
 
         return 0;
     }
-
+//JK
     public int defaultTest(ArrayList<String> method)
     {
 
         return 0;
     }
+//JM
     public int forTest(ArrayList<String> method)
     {
 
         return 0;
     }
-
+//JK
     public int whileTest(ArrayList<String> method)
     {
 
         return 0;
     }
-
+//JM
     public int doWhileTest(ArrayList<String> method)
     {
 
         return 0;
     }
-
+//JK
     public int breakTest(ArrayList<String> method)
     {
 
         return 0;
     }
-
+//JM
     public int continueTest(ArrayList<String> method)
     {
 
         return 0;
     }
-
+//JK
     public int catchTest(ArrayList<String> method)
     {
 
         return 0;
     }
-
+//JM
     public int finallyTest(ArrayList<String> method)
     {
 
         return 0;
     }
-
+//JK
     public int throwTest(ArrayList<String> method)
     {
 
         return 0;
     }
-
+//JM
     public int orTest(ArrayList<String> method)
     {
 
         return 0;
     }
-
+//JK
     public int andTest(ArrayList<String> method)
     {
 
         return 0;
     }
-
+//JM
     public int ternaryTest(ArrayList<String> method)
     {
 
         return 0;
     }
-
+//JK
     public int returnTest(ArrayList<String> method)
     {
 
