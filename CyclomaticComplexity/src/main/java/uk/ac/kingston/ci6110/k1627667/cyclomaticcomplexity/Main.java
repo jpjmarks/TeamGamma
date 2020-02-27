@@ -1,7 +1,6 @@
 package uk.ac.kingston.ci6110.k1627667.cyclomaticcomplexity;
 import java.util.Scanner;
 import java.util.ArrayList;
-import javax.naming.MalformedLinkException;
 import java.io.File;;
 /**
  *
@@ -9,14 +8,16 @@ import java.io.File;;
  */
 public class Main 
 {
-  private static boolean add;
+  private static Scanner sc;
+  private static Scanner sc2;
+
   public static void main(final String[] args) throws Exception 
   {
     //http://www.lizard.ws cyclo tester
     // File file = new File("/Users/kellacy/Documents/testClass.java"); //John Test
     File file = new File("/Users/james/Documents/University/Y3/Dependable Systems/Team Gamma/TeamGamma/CyclomaticComplexity/src/main/java/uk/ac/kingston/ci6110/k1627667/cyclomaticcomplexity/testcode.txt"); // James Test File Location
-    Scanner sc = new Scanner(file);
-    Scanner sc2 = new Scanner(file);
+    sc = new Scanner(file);
+    sc2 = new Scanner(file);
     String outp = "";
     ArrayList<String> outArray = new ArrayList<String>();
 
@@ -27,7 +28,6 @@ public class Main
     }
     CyclomaticTest newTest = new CyclomaticTest();
     newTest.CycloTests(outArray);
-
     // Get code to readable Point
     // Remove Class
     /*
