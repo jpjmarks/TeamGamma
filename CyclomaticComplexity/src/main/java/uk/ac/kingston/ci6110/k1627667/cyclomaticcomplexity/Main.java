@@ -12,6 +12,7 @@ public class Main
   private static boolean add;
   public static void main(final String[] args) throws Exception 
   {
+    //http://www.lizard.ws cyclo tester
     // File file = new File("/Users/kellacy/Documents/testClass.java"); //John Test
     File file = new File("/Users/james/Documents/University/Y3/Dependable Systems/Team Gamma/TeamGamma/CyclomaticComplexity/src/main/java/uk/ac/kingston/ci6110/k1627667/cyclomaticcomplexity/testcode.txt"); // James Test File Location
     Scanner sc = new Scanner(file);
@@ -24,13 +25,8 @@ public class Main
       outp = outp + sc.nextLine().trim();
       outArray.add(sc2.nextLine().trim());
     }
-
-    System.out.println("Array");
-
-    for (int i = 0; i < outArray.size(); i++) 
-    {
-      System.out.println("Line " + i + ": " + outArray.get(i));
-    }
+    CyclomaticTest newTest = new CyclomaticTest();
+    newTest.CycloTests(outArray);
 
     // Get code to readable Point
     // Remove Class

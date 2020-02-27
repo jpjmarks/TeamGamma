@@ -1,0 +1,65 @@
+JM
+{
+     pass array list to test class
+iterate through the array list and separate by function/method
+create array list of each function/method
+test each of the functions/methods for each of the following; every instance of these adds one to the method
+Calculate total for each function/method
+add into array with function/method name
+return
+output in main method somehow
+}
+
+JK
+if Statment (and one attacheced else or else if statment)
+further else if and else statements
+
+JM
+*case
+
+JK
+*default
+
+JM
+for loops
+
+
+JK
+while loops
+
+JM
+do-while
+
+JK
+break
+
+JM
+*continue
+
+JK
+catch
+
+JM
+*finally
+
+JK
+*throw, or throws clause
+
+JM
+Or (||) conditions
+
+JK
+And (&&) Conditons
+
+JM
+*? Conditions
+
+JK
+*: Conditions
+
+JK
+Returns	Each return that isn't the last statement of a method.
+
+
+
+https://www.leepoint.net/principles_and_practices/complexity/complexity-java-method.html

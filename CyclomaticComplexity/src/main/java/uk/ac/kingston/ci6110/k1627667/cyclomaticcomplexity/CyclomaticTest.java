@@ -4,14 +4,15 @@
  * and open the template in the editor.
  */
 package uk.ac.kingston.ci6110.k1627667.cyclomaticcomplexity;
-
+import java.util.ArrayList;
 /**
  *
  * @author james
  */
-public class testClass {
+public class CyclomaticTest
+{
     private int counter = 0;
-    
+    public int i =0;
     public void setCounter(int c)
     {
         this.counter = c;
@@ -21,6 +22,15 @@ public class testClass {
         return this.counter;
     }
 
-    
+    public /*ArrayList*/ void CycloTests(ArrayList<String> file)
+    {
+        for (int i = 0; i < file.size(); i++) 
+        {
+          System.out.println("Line " + i + ": " + file.get(i));
+        }
+    }
 
+    
+     
 }
+
