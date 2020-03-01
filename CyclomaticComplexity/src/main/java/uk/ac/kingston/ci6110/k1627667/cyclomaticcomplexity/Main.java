@@ -15,7 +15,9 @@ public class Main
   {
     //http://www.lizard.ws cyclo tester
     // File file = new File("/Users/kellacy/Documents/testClass.java"); //John Test
-    File file = new File("/Users/james/Documents/University/Y3/Dependable Systems/Team Gamma/TeamGamma/CyclomaticComplexity/src/main/java/uk/ac/kingston/ci6110/k1627667/cyclomaticcomplexity/testcode.txt"); // James Test File Location
+   File file = new File("/Users/james/Documents/University/Y3/Dependable Systems/Team Gamma/TeamGamma/CyclomaticComplexity/src/main/java/uk/ac/kingston/ci6110/k1627667/cyclomaticcomplexity/testcode.txt"); // James Test File Location
+    //File file = new File("/Users/james/Documents/University/Y3/Dependable Systems/Team Gamma/TeamGamma/CyclomaticComplexity/src/main/java/uk/ac/kingston/ci6110/k1627667/cyclomaticcomplexity/testcode2.txt"); // James Test File Location 2
+
     sc = new Scanner(file);
     sc2 = new Scanner(file);
     String outp = "";
@@ -27,7 +29,7 @@ public class Main
       outArray.add(sc2.nextLine().trim());
     }
     CyclomaticTest newTest = new CyclomaticTest();
-    newTest.CycloTests(outArray);
+    newTest.cycloTests(outArray);
     // Get code to readable Point
     // Remove Class
     /*

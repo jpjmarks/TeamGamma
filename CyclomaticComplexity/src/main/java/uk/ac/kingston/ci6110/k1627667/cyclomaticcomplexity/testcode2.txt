@@ -1,0 +1,142 @@
+package com.jamesmarks.tictactoe4by4;
+public class Board
+{
+  private String[][] square = new String[5][5];
+  private int count;
+  private String gameState;
+
+  public Board() {
+    this.resetBoard();
+  }
+
+  public String getGameState() {
+    return gameState;
+  }
+
+  public void setGameState(String gameState) {
+    this.gameState = gameState;
+  }
+
+  public int getCount() 
+  {
+    return count;
+  }
+  
+  public void setCount(int count) 
+  {
+    this.count = count;
+  }
+
+  public String getSquare(int y, int x) 
+  {	 	      	  	       	      	      	       	
+    return this.square[y][x];	 	      	  	       	      	      	       	
+  }	 	
+
+  public void setSquare(int y, int x, String player)	 	      	  	       	      	      	       	
+  {	 	      	  	       	      	      	       	
+    this.square[y][x] = "["+player+"]";	 	      	  	       	      	      	       	
+  }
+  
+  public int placeMove(int y, int x, String gamePiece, int turns)	 	      	  	       	      	      	       	
+  {	 	 
+    if (y>0 && y<5 && x>0 && x<5)
+    { 	       	      	      	       		 	      	  	       	      	      	       	
+      String current = this.getSquare(y,x);	 	      	  	       	      	      	       	
+      if (current.equals("[_]"))	 	      	  	       	      	      	       	
+      {	 	      	  	       	      	      	       	
+        this.setSquare(y,x,gamePiece);	 	      	  	       	      	      	       	
+        this.drawBoard();
+        count++;      	  	       	      	      	       	
+        this.winCheck();
+        turns ++;
+      }	 	      	  	       	      	      	       	
+      else	 	      	  	       	      	      	       	
+      {	 	      	  	       	      	      	       	
+        System.out.println("Illegal Move");	 	      	  	       	      	      	       	
+      }	 
+    }
+    else
+    {
+      System.out.println("Illegal Move");
+    }	 
+    return turns;     	  	       	      	      	       	
+  }	
+
+  public void drawBoard()	 	      	  	       	      	      	       	
+  {	 	      	  	       	      	      	       	
+    for (int y = 0; y < 5; y++)	 	      	  	       	      	      	       	
+    {	 	      	  	       	      	      	       	
+      String line = "";	 	      	  	       	      	      	       	
+      for (int x = 0; x < 5; x++)	 	      	  	       	      	      	       	
+      {	 	      	  	       	      	      	       	
+        line += (this.getSquare(y,x));	 	      	  	       	      	      	       	
+        if (x == 4)	 	      	  	       	      	      	       	
+        {	 	      	  	       	      	      	       	
+          System.out.println(line);	 	      	  	       	      	      	       	
+        }	 	      	  	       	      	      	       	
+      }	 	      	  	       	      	      	       	
+    }	 	      	  	       	      	      	       	
+  }
+
+  public void winCheck()	 	      	  	       	      	      	       	
+  {	 	      	  	       	      	      	       	
+    for (int i=1; i<5; i++)	 	      	  	       	      	      	       	
+    {	 	      	  	       	      	      	       	
+      if (!this.getSquare(i,1).equals("[_]") && this.getSquare(i,1).equals(this.getSquare(i,2)) && this.getSquare(i,1).equals(this.getSquare(i,3)) && this.getSquare(i,1).equals(this.getSquare(i,4)))
+      {
+        this.setGameState("Winner");
+      }
+      if (!this.getSquare(1,i).equals("[_]")&&this.getSquare(1,i).equals(this.getSquare(2,i))&&this.getSquare(1,i).equals(this.getSquare(3,i))&&this.getSquare(1,i).equals(this.getSquare(4,i)))
+      {
+        this.setGameState("Winner");
+      }
+    } 	
+    if (!this.getSquare(1,1).equals("[_]")&&this.getSquare(1,1).equals(this.getSquare(2,2))&&this.getSquare(1,1).equals(this.getSquare(3,3))&&this.getSquare(1,1).equals(this.getSquare(4,4)))
+    {
+      this.setGameState("Winner");
+    }
+    if (!this.getSquare(1,4).equals("[_]")&&this.getSquare(1,4).equals(this.getSquare(2,3))&&this.getSquare(1,4).equals(this.getSquare(3,2))&&this.getSquare(1,4).equals(this.getSquare(4,1)))
+      {
+        this.setGameState("Winner");
+      }
+    if (count == 16)
+    {
+      this.setGameState("Draw");
+    }     	  	       	      	      	       	
+  }	 	
+
+  public void resetBoard()
+  {
+    this.count=0;
+    for (int y = 0; y < 5; y++)
+    {
+      for (int x = 0; x < 5; x++)
+      {
+        if(y==0)
+        {
+          if(x==0)
+          {
+            square[y][x] = new String("  ");
+          }
+          else
+          {
+            square[y][x] = new String("  "+x);
+          }
+        }
+        else
+        {
+          if (x==0)
+          {
+          square[y][x] = new String("  "+y);
+          }
+          else
+          {
+           square[y][x] = new String("[_]");
+          }  
+        }          
+      }	 	      	  	       	      	      	       	
+    }	
+    this.setGameState("In Play");
+    this.drawBoard(); 	    
+  }    
+}

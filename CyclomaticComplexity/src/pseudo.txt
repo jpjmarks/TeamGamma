@@ -1,8 +1,8 @@
 JM
 {
      pass array list to test class
-iterate through the array list and separate by function/method
-create array list of each function/method
+iterate through the array list and separate by function/method *COMPLETE*
+create array list of each function/method *COMPLETE*
 test each of the functions/methods for each of the following; every instance of these adds one to the method
 Calculate total for each function/method
 add into array with function/method name
