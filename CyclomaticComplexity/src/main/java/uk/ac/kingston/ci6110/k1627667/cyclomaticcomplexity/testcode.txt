@@ -114,6 +114,7 @@ public class Main
                     catch(Exception e)
                     {
                         tryCheck = false;
+                        break;
                     }
                     
                     if(xCo < 1 || xCo > 4 || yCo < 1 || yCo > 4 && tryCheck)
@@ -155,6 +156,7 @@ public class Main
                     if(p1Score>p2Score)
                     {
                         System.out.println("Good job "+p1Name+" you beat "+p2Name+" by "+p1Score+ " to "+p2Score+"!");
+                        break;
                     }
                     else if(p1Score<p2Score)
                     {
@@ -169,6 +171,7 @@ public class Main
                 {
                     cIn = false;
                     System.out.println("Sorry that is not a 'Y' or an 'N'. Please try again.");
+                    break;
                 }
             }
             gameState = board.getGameState();

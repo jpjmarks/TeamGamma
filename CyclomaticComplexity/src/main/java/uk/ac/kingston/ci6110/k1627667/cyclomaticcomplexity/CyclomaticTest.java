@@ -227,8 +227,17 @@ public class CyclomaticTest {
 
     // JK
     public int breakTest(ArrayList<String> method) {
+        int finalBreakScore = 0;
 
-        return 0;
+        for (int i = 0; i < method.size(); i++) {
+            String tempString = method.get(i);
+
+            if (tempString.contains("break")){
+                finalBreakScore++;
+            }
+        }
+        //System.out.println("Break Score = " + finalBreakScore); //debug
+        return finalBreakScore;
     }
 
     // JM
