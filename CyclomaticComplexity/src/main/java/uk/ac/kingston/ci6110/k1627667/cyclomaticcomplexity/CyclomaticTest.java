@@ -55,7 +55,8 @@ public class CyclomaticTest {
         return outArray;
     }
 
-    // JK
+    // JK 
+    //forgot John was doing this so I made I start whoops - James
     public int ifTest(ArrayList<String> method) {
         String tempString = "";
         for (int i = 0; i < method.size(); i++) {
