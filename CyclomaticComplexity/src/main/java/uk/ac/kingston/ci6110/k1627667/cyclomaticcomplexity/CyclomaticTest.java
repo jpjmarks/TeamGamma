@@ -119,72 +119,72 @@ public class CyclomaticTest {
 
     // JK 
     //forgot John was doing this so I made I start whoops - James
-    public int ifTest(ArrayList<String> method) {
-        int finalIfScore = 0;
-        String tempString = "";
-        ArrayList<String> valueLines = new ArrayList<>();
+     public int ifTest(ArrayList<String> method) {
+    //     int finalIfScore = 0;
+    //     String tempString = "";
+    //     ArrayList<String> valueLines = new ArrayList<>();
 
-        for (int i = 0; i < method.size(); i++) {
-            tempString = method.get(i);
-            tempString = tempString.replaceAll(" ","");
-            //System.out.println(tempString); //debug
+    //     for (int i = 0; i < method.size(); i++) {
+    //         tempString = method.get(i);
+    //         tempString = tempString.replaceAll(" ","");
+    //         //System.out.println(tempString); //debug
 
-            if (tempString.contains("elseif")){
-                valueLines.add("elseif");
-            }else if (tempString.contains("if")){
-                valueLines.add("if");
-            }else if (tempString.contains("else")){
-                valueLines.add("else");
-            }
-        }
+    //         if (tempString.contains("elseif")){
+    //             valueLines.add("elseif");
+    //         }else if (tempString.contains("if")){
+    //             valueLines.add("if");
+    //         }else if (tempString.contains("else")){
+    //             valueLines.add("else");
+    //         }
+    //     }
 
-        //System.out.println(valueLines); //debug
-        int ifMaxLimit = 0;
-        while(ifMaxLimit != valueLines.size())
-        {
-            String currentLine = valueLines.get(ifMaxLimit);
-            if(currentLine == "if"){
-                int escapeOtherIfCheck = 0;
-                int checkAheadIf = 1;
-                int ifCount = 1;
-                int elifCount = 0;
-                int elseCount = 0;
-                //System.out.println(currentLine); //debug
+    //     //System.out.println(valueLines); //debug
+    //     int ifMaxLimit = 0;
+    //     while(ifMaxLimit != valueLines.size())
+    //     {
+    //         String currentLine = valueLines.get(ifMaxLimit);
+    //         if(currentLine == "if"){
+    //             int escapeOtherIfCheck = 0;
+    //             int checkAheadIf = 1;
+    //             int ifCount = 1;
+    //             int elifCount = 0;
+    //             int elseCount = 0;
+    //             //System.out.println(currentLine); //debug
 
-                //Count else if's and else's contained within the if, need max guard!!
-                while(escapeOtherIfCheck != 1){
-                    if(valueLines.get(ifMaxLimit + checkAheadIf) == "elseif"){
-                        //System.out.println("elif"); //debug
-                        elifCount++;
-                        checkAheadIf++;
-                    }else if(valueLines.get(ifMaxLimit + checkAheadIf)== "else"){
-                        //System.out.println("else"); //debug
-                        elseCount++;
-                        escapeOtherIfCheck++;
-                    }else if(valueLines.get(ifMaxLimit + checkAheadIf)== "if"){
-                        //System.out.println("found another"); //debug
-                        escapeOtherIfCheck++;
-                    }
-                }
+    //             //Count else if's and else's contained within the if, need max guard!!
+    //             while(escapeOtherIfCheck != 1){
+    //                 if(valueLines.get(ifMaxLimit + checkAheadIf) == "elseif"){
+    //                     //System.out.println("elif"); //debug
+    //                     elifCount++;
+    //                     checkAheadIf++;
+    //                 }else if(valueLines.get(ifMaxLimit + checkAheadIf)== "else"){
+    //                     //System.out.println("else"); //debug
+    //                     elseCount++;
+    //                     escapeOtherIfCheck++;
+    //                 }else if(valueLines.get(ifMaxLimit + checkAheadIf)== "if"){
+    //                     //System.out.println("found another"); //debug
+    //                     escapeOtherIfCheck++;
+    //                 }
+    //             }
 
-                if(elseCount == 1){
-                    finalIfScore = finalIfScore + (ifCount + elifCount);
-                }else if(elseCount == 0){
-                    if(elifCount == 0 || elifCount == 1)
-                    {
-                        finalIfScore++;
-                    }
-                    else
-                    {
-                        finalIfScore = finalIfScore + (elifCount - ifCount);
-                    }
-                }
-                //System.out.println(finalIfScore); //debug
-            }
-            ifMaxLimit++;
-        }
-        return finalIfScore;
-    }
+    //             if(elseCount == 1){
+    //                 finalIfScore = finalIfScore + (ifCount + elifCount);
+    //             }else if(elseCount == 0){
+    //                 if(elifCount == 0 || elifCount == 1)
+    //                 {
+    //                     finalIfScore++;
+    //                 }
+    //                 else
+    //                 {
+    //                     finalIfScore = finalIfScore + (elifCount - ifCount);
+    //                 }
+    //             }
+    //             //System.out.println(finalIfScore); //debug
+    //         }
+    //         ifMaxLimit++;
+    //     }
+         return 0;
+     }
 
     // JM
     public int caseTest(ArrayList<String> method) {
@@ -205,9 +205,18 @@ public class CyclomaticTest {
     }
 
     // JK
-    public int whileTest(ArrayList<String> method) {
+    public int whileTest(ArrayList<String> method) { //Picks up 2 on getGameState on testcode 2, assume this is part of the main method that James is working on (To make it avoid)
+        int finalWhileScore = 0;
 
-        return 0;
+        for (int i = 0; i < method.size(); i++) {
+            String tempString = method.get(i);
+
+            if (tempString.contains("while")){
+                finalWhileScore++;
+            }
+        }
+        //System.out.println("While Score = " + finalWhileScore); //debug
+        return finalWhileScore;
     }
 
     // JM
