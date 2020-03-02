@@ -14,15 +14,35 @@ import java.util.ArrayList;
 public class CyclomaticTest {
 
     // JM
-    public /* ArrayList */ void cycloTests(ArrayList<String> file) {
+    public ArrayList<String> cycloTests(ArrayList<String> file) {
         // System.out.println("method cycloTests begun");//debug
-        ArrayList<ArrayList<String>> methods = (ArrayList<ArrayList<String>>) this.seaparateMethods(file).clone(); 
+        ArrayList<ArrayList<String>> methods = (ArrayList<ArrayList<String>>) seaparateMethods(file).clone(); 
+        ArrayList<String> scores = new ArrayList<String>();
         // creates arraylist of arraylists output by separatemethods method
         for (int i = 0; i < methods.size(); i++) // iterates through methods array list
         {
-            ifTest(methods.get(i));
+            int runningTotal = 1;
+            scores.add("The Method \\'"+methods.get(i).get(0) + "\\' has a cyclomatic Score of");
+           methods.set(i, commentTest(methods.get(i))) ;
+            runningTotal = runningTotal + ifTest(methods.get(i));
+            runningTotal = runningTotal + caseTest(methods.get(i));
+            runningTotal = runningTotal + defaultTest(methods.get(i));
+            runningTotal = runningTotal + forTest(methods.get(i));
+            runningTotal = runningTotal + whileTest(methods.get(i));
+            runningTotal = runningTotal + doWhileTest(methods.get(i));
+            runningTotal = runningTotal + breakTest(methods.get(i));
+            runningTotal = runningTotal + continueTest(methods.get(i));
+            runningTotal = runningTotal + catchTest(methods.get(i));
+            runningTotal = runningTotal + finallyTest(methods.get(i));
+            runningTotal = runningTotal + throwTest(methods.get(i));
+            runningTotal = runningTotal + orTest(methods.get(i));
+            runningTotal = runningTotal + andTest(methods.get(i));
+            runningTotal = runningTotal + ternaryTest(methods.get(i));
+            runningTotal = runningTotal + returnTest(methods.get(i));
+            scores.add(Integer.toString(runningTotal));
         }
 
+        return scores;
     }
 
 
