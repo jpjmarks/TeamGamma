@@ -10,6 +10,22 @@ public class Board
   }
 
   public String getGameState() {
+    String iftest = "if"; //if
+    String casetest = "case"; //case
+    String defaulttest = "default"; //default
+    String fortest = "for"; //for
+    String whiletest = "while"; //while
+    String dowhiletest = "do while"; //while
+    String breaktest = "break"; //break
+    String continuetest = "continue"; //continue
+    String catchtest = "catch"; //catch
+    String finallytest = "finaly"; //finally
+    String throwtest = "throw"; //throw
+    String ortest = "||"; //||
+    String andtest = "&&"; //&&
+    String ternarytest = "?"; //?
+    String returnest = "return"; //return
+
     return gameState;
   }
 
