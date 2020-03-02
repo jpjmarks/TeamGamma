@@ -15,21 +15,27 @@ public class Main
   {
     //http://www.lizard.ws cyclo tester
     // File file = new File("/Users/kellacy/Documents/testClass.java"); //John Test
-   File file = new File("/Users/james/Documents/University/Y3/Dependable Systems/Team Gamma/TeamGamma/CyclomaticComplexity/src/main/java/uk/ac/kingston/ci6110/k1627667/cyclomaticcomplexity/testcode.txt"); // James Test File Location
-    //File file = new File("/Users/james/Documents/University/Y3/Dependable Systems/Team Gamma/TeamGamma/CyclomaticComplexity/src/main/java/uk/ac/kingston/ci6110/k1627667/cyclomaticcomplexity/testcode2.txt"); // James Test File Location 2
-
+  File file = new File("/Users/james/Documents/University/Y3/Dependable Systems/Team Gamma/TeamGamma/CyclomaticComplexity/src/main/java/uk/ac/kingston/ci6110/k1627667/cyclomaticcomplexity/testcode.txt"); // James Test File Location
+   //File file = new File("/Users/james/Documents/University/Y3/Dependable Systems/Team Gamma/TeamGamma/CyclomaticComplexity/src/main/java/uk/ac/kingston/ci6110/k1627667/cyclomaticcomplexity/testcode2.txt"); // James Test File Location 2
+    CyclomaticTest newTest = new CyclomaticTest();
     sc = new Scanner(file);
     sc2 = new Scanner(file);
     String outp = "";
+    ArrayList<String> inArray = new ArrayList<String>();
     ArrayList<String> outArray = new ArrayList<String>();
 
     while (sc.hasNextLine()) 
     {
       outp = outp + sc.nextLine().trim();
-      outArray.add(sc2.nextLine().trim());
+      inArray.add(sc2.nextLine().trim());
     }
-    CyclomaticTest newTest = new CyclomaticTest();
-    newTest.cycloTests(outArray);
+    outArray = newTest.cycloTests(inArray);
+    
+   for(int i=0;i<outArray.size();i++)  
+    {  
+     System.out.println(outArray.get(i));     
+    }  
+    
     // Get code to readable Point
     // Remove Class
     /*
