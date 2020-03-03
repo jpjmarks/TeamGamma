@@ -28,20 +28,20 @@ public class CyclomaticTest {
             // each of the following lines runs each individual test on each arraly list
             // returning the score for each test
             // possibly display the scores for individual tests later
-            // runningTotal = runningTotal + ifTest(methods.get(i));
-            // runningTotal = runningTotal + caseTest(methods.get(i));
-            // runningTotal = runningTotal + defaultTest(methods.get(i));
-            // runningTotal = runningTotal + forTest(methods.get(i));
-            // runningTotal = runningTotal + whileTest(methods.get(i));
-            // runningTotal = runningTotal + doWhileTest(methods.get(i));
-            // runningTotal = runningTotal + breakTest(methods.get(i));
-            // runningTotal = runningTotal + continueTest(methods.get(i));
-            // runningTotal = runningTotal + catchTest(methods.get(i));
-            // runningTotal = runningTotal + finallyTest(methods.get(i));
-            // runningTotal = runningTotal + throwTest(methods.get(i));
+            runningTotal = runningTotal + ifTest(methods.get(i));
+            runningTotal = runningTotal + caseTest(methods.get(i));
+            runningTotal = runningTotal + defaultTest(methods.get(i));
+            runningTotal = runningTotal + forTest(methods.get(i));
+            runningTotal = runningTotal + whileTest(methods.get(i));
+            runningTotal = runningTotal + doWhileTest(methods.get(i));
+            runningTotal = runningTotal + breakTest(methods.get(i));
+            runningTotal = runningTotal + continueTest(methods.get(i));
+            runningTotal = runningTotal + catchTest(methods.get(i));
+            runningTotal = runningTotal + finallyTest(methods.get(i));
+            runningTotal = runningTotal + throwTest(methods.get(i));
             runningTotal = runningTotal + andOrTest(methods.get(i));
-            // runningTotal = runningTotal + ternaryTest(methods.get(i));
-            // runningTotal = runningTotal + returnTest(methods.get(i));
+            runningTotal = runningTotal + ternaryTest(methods.get(i));
+            runningTotal = runningTotal + returnTest(methods.get(i));
             scores.add(methods.get(i).get(0) + " has a cyclomatic Score of : " + Integer.toString(runningTotal)); // adds total score to an array to dispaly as the result.
             scores.add("");
         }
