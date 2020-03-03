@@ -200,6 +200,14 @@ public class CyclomaticTest {
 
     // JM
     public int forTest(ArrayList<String> method) {
+        int score = 0;
+        String tempString = "";
+        for (int i = 0; i < method.size(); i++) {
+            tempString = method.get(i);
+            
+        }
+
+    
 
         return 0;
     }
