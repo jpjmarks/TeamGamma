@@ -12,6 +12,10 @@ import java.util.ArrayList;
  * @author james
  */
 public class CyclomaticTest {
+    //Needed for IF testing, much easier with visibility
+    ArrayList<Integer> usedElseIfs = new ArrayList<>();
+    ArrayList<Integer> usedElses = new ArrayList<>();
+    ArrayList<String> finalIfList = new ArrayList<>();
 
     // JM
     public ArrayList<String> cycloTests(ArrayList<String> file) {
@@ -129,72 +133,138 @@ public class CyclomaticTest {
     }
 
     // JK
-    // forgot John was doing this so I made I start whoops - James
     public int ifTest(ArrayList<String> method) {
-        // int finalIfScore = 0;
-        // String tempString = "";
-        // ArrayList<String> valueLines = new ArrayList<>();
+        int finalIfScore = 0;
+        ArrayList<Integer> allIfLocations = new ArrayList<>();
 
-        // for (int i = 0; i < method.size(); i++) {
-        // tempString = method.get(i);
-        // tempString = tempString.replaceAll(" ","");
-        // //System.out.println(tempString); //debug
+        for (int i = 0; i < method.size(); i++) {
+            String tempString = method.get(i);
 
-        // if (tempString.contains("elseif")){
-        // valueLines.add("elseif");
-        // }else if (tempString.contains("if")){
-        // valueLines.add("if");
-        // }else if (tempString.contains("else")){
-        // valueLines.add("else");
-        // }
-        // }
+            if (tempString.contains("if")) {
+                if (tempString.contains("else if")){
 
-        // //System.out.println(valueLines); //debug
-        // int ifMaxLimit = 0;
-        // while(ifMaxLimit != valueLines.size())
-        // {
-        // String currentLine = valueLines.get(ifMaxLimit);
-        // if(currentLine == "if"){
-        // int escapeOtherIfCheck = 0;
-        // int checkAheadIf = 1;
-        // int ifCount = 1;
-        // int elifCount = 0;
-        // int elseCount = 0;
-        // //System.out.println(currentLine); //debug
+                }else{
+                    allIfLocations.add(i+3); //Due to the number of ArrayList gone through starting at 0, it appears 3 behind, hence +3.
+                }
+            }
 
-        // //Count else if's and else's contained within the if, need max guard!!
-        // while(escapeOtherIfCheck != 1){
-        // if(valueLines.get(ifMaxLimit + checkAheadIf) == "elseif"){
-        // //System.out.println("elif"); //debug
-        // elifCount++;
-        // checkAheadIf++;
-        // }else if(valueLines.get(ifMaxLimit + checkAheadIf)== "else"){
-        // //System.out.println("else"); //debug
-        // elseCount++;
-        // escapeOtherIfCheck++;
-        // }else if(valueLines.get(ifMaxLimit + checkAheadIf)== "if"){
-        // //System.out.println("found another"); //debug
-        // escapeOtherIfCheck++;
-        // }
-        // }
+            
+        }
 
-        // if(elseCount == 1){
-        // finalIfScore = finalIfScore + (ifCount + elifCount);
-        // }else if(elseCount == 0){
-        // if(elifCount == 0 || elifCount == 1)
-        // {
-        // finalIfScore++;
-        // }
-        // else
-        // {
-        // finalIfScore = finalIfScore + (elifCount - ifCount);
-        // }
-        // }
-        // //System.out.println(finalIfScore); //debug
-        // }
-        // ifMaxLimit++;
-        // }
+        //System.out.println(allIfLocations); //debug
+
+        for(int i = (allIfLocations.size() - 1); i >= 0; i--)
+        {
+            System.out.println("Checking out IF at location, " + allIfLocations.get(i));
+            ifTestRecursion(allIfLocations.get(i), method);
+        }
+        
+        System.out.println(finalIfList); //debug
+
+
         return 0;
+    }
+
+    public void ifTestRecursion(int startPos, ArrayList<String> method){
+        int lineIterator = startPos - 3;
+        finalIfList.add("if");
+        boolean firstRun = true;
+        boolean hitEnd = false;
+        boolean lastBracketClosed = false;
+
+        while(hitEnd == false)
+        {
+            String currentLine = method.get(lineIterator);
+
+            int openLocation = currentLine.lastIndexOf("{");
+            int closedLocation = currentLine.lastIndexOf("}");
+
+            if(openLocation == closedLocation){
+                lineIterator++;
+            }
+
+            if(openLocation > closedLocation){
+                lastBracketClosed = false;
+                lineIterator++;
+            }
+
+            if(closedLocation > openLocation && lastBracketClosed == true){
+                String ignoreText = "ignore";
+                method.set(lineIterator, ignoreText);
+                hitEnd = true;
+                System.out.println("DOUBLE CLOSED FOUND"); //debug
+            }else if(closedLocation > openLocation){
+                lastBracketClosed = true;
+                lineIterator++;
+            }
+
+            //System.out.println(currentLine); //debug
+            //System.out.println(openLocation + ", " + closedLocation); //debug
+            
+            // if(firstRun == false){
+            //     if(currentLine.contains("if")){
+            //         if(currentLine.contains("else if")){
+            //         }else{
+            //             hitEnd=true;
+            //             System.out.println("ANOTHER IF FOUND");
+            //         }
+            //     }
+            // }else{
+            //     firstRun = false;
+            // }
+
+            if(currentLine.contains("else if"))
+            {
+                boolean isElseIfUsed = false;
+
+                for(int i = 0; i < usedElseIfs.size(); i++)
+                {
+                    if(lineIterator == usedElseIfs.get(i))
+                    {
+                        isElseIfUsed = true;
+                    }
+                    
+                }
+
+                if(isElseIfUsed == false)
+                {
+                    usedElseIfs.add(lineIterator);
+                    finalIfList.add("else if");
+                    System.out.println("Adding ELSE IF"); //debug
+                }
+            }
+
+            if(currentLine.contains("else"))
+            {
+                if(currentLine.contains("else if")){
+                }else{
+                    boolean isElseUsed = false;
+
+                    for(int i = 0; i < usedElses.size(); i++)
+                    {
+                        if(lineIterator == usedElses.get(i))
+                        {
+                            isElseUsed = true;
+                        }
+                        
+                    }
+    
+                    if(isElseUsed == false)
+                    {
+                        usedElses.add(lineIterator);
+                        finalIfList.add("else");
+                        hitEnd = true;
+                        System.out.println("Adding ELSE"); // debug
+                    }
+                }
+
+            }
+
+            if(lineIterator == (method.size() - 1 ))
+            {
+                hitEnd=true;
+            }
+        }
     }
 
     // JM
