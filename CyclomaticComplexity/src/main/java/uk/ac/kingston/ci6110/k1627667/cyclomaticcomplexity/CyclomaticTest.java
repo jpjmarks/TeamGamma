@@ -155,12 +155,13 @@ public class CyclomaticTest {
 
         for(int i = (allIfLocations.size() - 1); i >= 0; i--)
         {
-            System.out.println("Checking out IF at location, " + allIfLocations.get(i));
+            //System.out.println("Checking out IF at location, " + allIfLocations.get(i)); //debug
             ifTestRecursion(allIfLocations.get(i), method);
         }
         
-        System.out.println(finalIfList); //debug
+        //System.out.println(finalIfList); //debug
 
+        //Score Counting
 
         return 0;
     }
@@ -175,6 +176,7 @@ public class CyclomaticTest {
         while(hitEnd == false)
         {
             String currentLine = method.get(lineIterator);
+            //System.out.println(currentLine); //debug
 
             int openLocation = currentLine.lastIndexOf("{");
             int closedLocation = currentLine.lastIndexOf("}");
@@ -189,10 +191,11 @@ public class CyclomaticTest {
             }
 
             if(closedLocation > openLocation && lastBracketClosed == true){
-                String ignoreText = "ignore";
-                method.set(lineIterator, ignoreText);
+                String removeBracketLine = currentLine;
+                String newLine = removeBracketLine.replace( '}' , '?');
+                method.set(lineIterator, newLine);
                 hitEnd = true;
-                System.out.println("DOUBLE CLOSED FOUND"); //debug
+                //System.out.println("DOUBLE CLOSED FOUND"); //debug
             }else if(closedLocation > openLocation){
                 lastBracketClosed = true;
                 lineIterator++;
@@ -230,7 +233,7 @@ public class CyclomaticTest {
                 {
                     usedElseIfs.add(lineIterator);
                     finalIfList.add("else if");
-                    System.out.println("Adding ELSE IF"); //debug
+                    //System.out.println("Adding ELSE IF"); //debug
                 }
             }
 
@@ -254,7 +257,7 @@ public class CyclomaticTest {
                         usedElses.add(lineIterator);
                         finalIfList.add("else");
                         hitEnd = true;
-                        System.out.println("Adding ELSE"); // debug
+                        //System.out.println("Adding ELSE"); // debug
                     }
                 }
 
