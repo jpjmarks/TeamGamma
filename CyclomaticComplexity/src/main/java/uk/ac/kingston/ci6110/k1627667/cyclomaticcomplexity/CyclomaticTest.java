@@ -18,41 +18,74 @@ public class CyclomaticTest {
     ArrayList<String> finalIfList = new ArrayList<>();
 
     // JM
-    public ArrayList<String> cycloTests(ArrayList<String> file) {
+    public ArrayList<ArrayList<String>> cycloTests(ArrayList<String> file) 
+    {
         ArrayList<ArrayList<String>> methods = (ArrayList<ArrayList<String>>) seaparateMethods(file).clone();
         // creates arraylist of arraylists output by separatemethods method
-        ArrayList<String> scores = new ArrayList<String>();
+       ArrayList<ArrayList<String>> scores = new ArrayList<ArrayList<String>>();
         for (int i = 0; i < methods.size(); i++) // iterates through methods array list ignoring the first element which is the name of the method
         {
+            scores.add(new ArrayList<String>()); // adds a new array list to the output 2d array
+            scores.get(i).add(methods.get(i).get(0)); // adds total score to an array to dispaly as the result.
             int runningTotal = 1; // running total opf the complexity, starting at 1 as all methods if runnable
                                   // will have a complexity of 0 even with no code
             // System.out.println(methods.get(i)); //debug
+            int thisTest = 0;
             methods.set(i, commentTest(methods.get(i))); // comment and string tests to remove any mentions of trigger
                                                          // words
             // each of the following lines runs each individual test on each arraly list
             // returning the score for each test
             // possibly display the scores for individual tests later
-            runningTotal = runningTotal + ifTest(methods.get(i));
-            runningTotal = runningTotal + caseTest(methods.get(i));
-            runningTotal = runningTotal + defaultTest(methods.get(i));
-            runningTotal = runningTotal + forTest(methods.get(i));
-            runningTotal = runningTotal + whileTest(methods.get(i));
-            runningTotal = runningTotal + doWhileTest(methods.get(i));
-            runningTotal = runningTotal + breakTest(methods.get(i));
-            runningTotal = runningTotal + continueTest(methods.get(i));
-            runningTotal = runningTotal + catchTest(methods.get(i));
+            // thisTest = ifTest(methods.get(i));
+            // scores.get(i).add("If, Else If, and Else statements increased this methods score by: " + thisTest); // adds total score to an array to dispaly as the result.
+            // runningTotal = runningTotal + thisTest;
+            thisTest = caseTest(methods.get(i));
+            scores.get(i).add("Case statements increased this methods score by: " + thisTest); // adds total score to an array to dispaly as the result.
+            runningTotal = runningTotal + thisTest;
+            thisTest = defaultTest(methods.get(i));
+            scores.get(i).add("Default statements increased this methods score by: " + thisTest); // adds total score to an array to dispaly as the result.
+            runningTotal = runningTotal + thisTest;
+            thisTest = forTest(methods.get(i));
+            scores.get(i).add("For Loops increased this methods score by: " + thisTest); // adds total score to an array to dispaly as the result.
+            runningTotal = runningTotal + thisTest;
+            thisTest = whileTest(methods.get(i));
+            scores.get(i).add("While Loops increased this methods score by: " + thisTest); // adds total score to an array to dispaly as the result.
+            runningTotal = runningTotal + thisTest;
+            thisTest = doWhileTest(methods.get(i));
+            scores.get(i).add("Do While Loops increased this methods score by: " + thisTest); // adds total score to an array to dispaly as the result.
+            runningTotal = runningTotal + thisTest;
+            thisTest = breakTest(methods.get(i));
+            scores.get(i).add("Break statements increased this methods score by: " + thisTest); // adds total score to an array to dispaly as the result.
+            runningTotal = runningTotal + thisTest;
+            thisTest = continueTest(methods.get(i));
+            scores.get(i).add("Continue statements increased this methods score by: " + thisTest); // adds total score to an array to dispaly as the result.
+            runningTotal = runningTotal + thisTest;
+            thisTest = catchTest(methods.get(i));
+            scores.get(i).add("Catch statements increased this methods score by: " + thisTest); // adds total score to an array to dispaly as the result.
+            runningTotal = runningTotal + thisTest;
+            thisTest = finallyTest(methods.get(i));
+            scores.get(i).add("Finally statements increased this methods score by: " + thisTest); // adds total score to an array to dispaly as the result.
             runningTotal = runningTotal + finallyTest(methods.get(i));
+            thisTest = throwTest(methods.get(i));
+            scores.get(i).add("Throw statements increased this methods score by: " + thisTest); // adds total score to an array to dispaly as the result.
             runningTotal = runningTotal + throwTest(methods.get(i));
+            thisTest = andOrTest(methods.get(i));
+            scores.get(i).add("&& and || Boolean conditions increased this methods score by: " + thisTest); // adds total score to an array to dispaly as the result.
             runningTotal = runningTotal + andOrTest(methods.get(i));
+            thisTest = ternaryTest(methods.get(i));
+            scores.get(i).add("Ternary statements increased this methods score by: " + thisTest); // adds total score to an array to dispaly as the result.
             runningTotal = runningTotal + ternaryTest(methods.get(i));
+            thisTest = returnTest(methods.get(i));
+            scores.get(i).add("Return statements increased this methods score by: " + thisTest); // adds total score to an array to dispaly as the result.
             runningTotal = runningTotal + returnTest(methods.get(i));
-            scores.add(methods.get(i).get(0) + " has a cyclomatic Score of : " + Integer.toString(runningTotal)); // adds total score to an array to dispaly as the result.
-            scores.add("");
+            scores.get(i).set(0, methods.get(i).get(0) + " has a cyclomatic Score of : " + Integer.toString(runningTotal)); // adds total score to an array to dispaly as the result.
+            scores.get(i).add("");
         }
 
         return scores; // returns the array of scores
     }
 
+    //JM *COMPLETE*
     public ArrayList<ArrayList<String>> seaparateMethods(ArrayList<String> file) // initiates separate methods methof with an input of arraylist of type string, returning an array list of array lists
     {
         ArrayList<ArrayList<String>> outArray = new ArrayList<ArrayList<String>>(); // initiates new 2d arraylist
@@ -333,12 +366,11 @@ public class CyclomaticTest {
         return 0;
     }
 
-    // JM
+    // JM *COMPLETE*
     public int forTest(ArrayList<String> method) {
         int score = 0;
         String thisLine = "";
         String nextLine = "";
-
         for (int i = 0; i < method.size(); i++) {
             thisLine = method.get(i);
             if (i < method.size() - 1) {
@@ -415,7 +447,7 @@ public class CyclomaticTest {
         return 0;
     }
 
-    // JM
+    // JM *COMPLETE*
     public int andOrTest(ArrayList<String> method) 
     { // start andOr method
         int score = 0; // sets score to 0

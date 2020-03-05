@@ -3,11 +3,11 @@ JM
      pass array list to test class
 iterate through the array list and separate by function/method *COMPLETE*
 create array list of each function/method *COMPLETE*
-test each of the functions/methods for each of the following; every instance of these adds one to the method
-Calculate total for each function/method
-add into array with function/method name
-return
-output in main method somehow
+test each of the functions/methods for each of the following; every instance of these adds one to the method *COMPLETE*
+Calculate total for each function/method *COMPLETE*
+add into array with function/method name *COMPELTE*
+return *COMPLETE*
+output in main method somehow *COMPLETE*
 }
 
 JK
@@ -20,7 +20,7 @@ JM
 JK
 *default
 
-JM
+JM *COMPLETE*
 for loops
 
 JK
@@ -44,11 +44,9 @@ JM
 JK
 *throw, or throws clause
 
-JM
+JM *COMPLETE*
 Or (||) conditions
-
-JK
-And (&&) Conditons
+And (&&) Conditons 
 
 JM
 *? : Conditions
