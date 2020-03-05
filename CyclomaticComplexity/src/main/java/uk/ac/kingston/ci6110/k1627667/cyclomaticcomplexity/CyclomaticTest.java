@@ -191,56 +191,47 @@ public class CyclomaticTest {
         for(int i = 0; i < finalIfList.size(); i++)
         {
             String currentLine = finalIfList.get(i);
-            int x = i + 1;
+            int x = i+1;
 
             if(currentLine == "if")
             {
                 boolean nextIfFound = false;
                 int elifCount = 0;
-                int elseCount = 0;
                 
                 while(nextIfFound == false)
                 {
                     String temp = "";
-                    temp = finalIfList.get(x);
+
+                    if(x >= finalIfList.size() - 1){
+                        nextIfFound = true;
+                    }else{
+                        temp = finalIfList.get(x);
+                    }
 
                     if(temp == "else if")
                     {
                         elifCount++;
-                    }else if(temp == "else")
-                    {
-                        elseCount++;
                     }else if(temp == "if")
                     {
                         nextIfFound = true;
                     }
-                    else{
-                    }
+
                     x++;
-
-                    if(x >= finalIfList.size())
-                    {
-                        nextIfFound = true;
-                    }
                 }
 
-                if(elseCount == 1)
-                {
-                    finalIfScore = finalIfScore + (1 + elifCount);
-                }else if(elifCount == 1){
-                    finalIfScore++;
-                }else if(elifCount > 1){
-                    finalIfScore = finalIfScore + elifCount;
-                }else if(elifCount == 0){
-                    finalIfScore++;
-                }
-                //System.out.println(finalIfScore); //debug
+                finalIfScore = finalIfScore + elifCount + 1;
+                
             }
 
         }
-
         //System.out.println(finalIfScore); //debug
-        return finalIfScore;
+        if(finalIfScore == 0){
+            return 0;
+        }else{
+            return finalIfScore;
+        }
+        //System.out.println(finalIfScore); //debug
+        
     }
 
     //JK *IN PROGRESS*
