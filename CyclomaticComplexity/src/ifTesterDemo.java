@@ -17,6 +17,10 @@ class main{
                 }else if(x == 5){
 
                 } 
+                else
+                {
+
+                }
             } //1st run - changed to "?", results in if, elif added
         }//2nd run - changed to "?", results in if, elif, elif added 
         else if(x == 5){
@@ -27,5 +31,9 @@ class main{
         
     } //3rd run - changed to "?", results in if, elif, elif added
 }
+
+//if, elif, elif = 3
+//if, elif = 2
+//if, elif, else = 2
 
 //Array = if, elif, if, elif, elif, if, elif, elif
