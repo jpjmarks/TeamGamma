@@ -10,19 +10,23 @@ public class Main
 {
   private static Scanner sc;
   private static Scanner sc2;
-
+  
   public static void main(final String[] args) throws Exception 
   {
     //http://www.lizard.ws cyclo tester
+<<<<<<< HEAD
     File file = new File("/Users/kellacy/Documents/testcode2.txt"); //John Test
+=======
+    //File file = new File("/Users/kellacy/Documents/testcode.txt"); //John Test
+>>>>>>> d0c0174fb14686dc2e53597c58fdad9479341ec9
    //File file = new File("/Users/james/Documents/University/Y3/Dependable Systems/Team Gamma/TeamGamma/CyclomaticComplexity/src/main/java/uk/ac/kingston/ci6110/k1627667/cyclomaticcomplexity/testcode.txt"); // James Test File Location
-   //File file = new File("/Users/james/Documents/University/Y3/Dependable Systems/Team Gamma/TeamGamma/CyclomaticComplexity/src/main/java/uk/ac/kingston/ci6110/k1627667/cyclomaticcomplexity/testcode2.txt"); // James Test File Location 2
+   File file = new File("/Users/james/Documents/University/Y3/Dependable Systems/Team Gamma/TeamGamma/CyclomaticComplexity/src/main/java/uk/ac/kingston/ci6110/k1627667/cyclomaticcomplexity/testcode2.txt"); // James Test File Location 2
     CyclomaticTest newTest = new CyclomaticTest();
     sc = new Scanner(file);
     sc2 = new Scanner(file);
     String outp = "";
     ArrayList<String> inArray = new ArrayList<String>();
-    ArrayList<String> outArray = new ArrayList<String>();
+    ArrayList<ArrayList<String>> outArray = new ArrayList<ArrayList<String>>();
 
     while (sc.hasNextLine()) 
     {
@@ -33,7 +37,10 @@ public class Main
     
    for(int i=0;i<outArray.size();i++)  
     {  
-     System.out.println(outArray.get(i));     
+      for (int j =0;j<outArray.get(i).size();j++)
+      {
+     System.out.println(outArray.get(i).get(j));     
+      }
     }  
   }
 
