@@ -148,7 +148,7 @@ public class Main
                     board.resetBoard();
                     roundCounter ++;
                 }
-                else if (cont.equals("N")||cont.equals("n"))
+                else if(cont.equals("N")||cont.equals("n"))
                 {
                     cIn = true;
                     int p1Score = p1.getScore();
@@ -162,7 +162,7 @@ public class Main
                     {
                         System.out.println("Good job "+p2Name+" you beat "+p2Name+" by "+p2Score+ " to "+p1Score+"!");
                     }
-                    else if (p1Score==p2Score)
+                    else if(p1Score==p2Score)
                     {
                         System.out.println("It was a draw! You both won "+p1Score+" games each!");
                     }

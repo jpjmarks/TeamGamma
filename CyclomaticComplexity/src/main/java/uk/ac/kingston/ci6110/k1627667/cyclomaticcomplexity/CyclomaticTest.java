@@ -1,16 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package uk.ac.kingston.ci6110.k1627667.cyclomaticcomplexity;
-
 import java.util.ArrayList;
-
-/**
- *
- * @author james
+/** 
+ * @author James Marks & John Kelly
  */
+
 public class CyclomaticTest {
     //Needed for IF testing, much easier with visibility
     ArrayList<Integer> usedElseIfs = new ArrayList<>();
@@ -36,9 +29,9 @@ public class CyclomaticTest {
             // each of the following lines runs each individual test on each arraly list
             // returning the score for each test
             // possibly display the scores for individual tests later
-            // thisTest = ifTest(methods.get(i));
-            // scores.get(i).add("If, Else If, and Else statements increased this methods score by: " + thisTest); // adds total score to an array to dispaly as the result.
-            // runningTotal = runningTotal + thisTest;
+            thisTest = ifTestTwo(methods.get(i));
+            scores.get(i).add("If, Else If, and Else statements increased this methods score by: " + thisTest); // adds total score to an array to dispaly as the result.
+            runningTotal = runningTotal + thisTest;
             thisTest = caseTest(methods.get(i));
             scores.get(i).add("Case statements increased this methods score by: " + thisTest); // adds total score to an array to dispaly as the result.
             runningTotal = runningTotal + thisTest;
@@ -165,7 +158,7 @@ public class CyclomaticTest {
         return method;
     }
 
-    // JK
+    // JK *IN PROGRESS*
     public int ifTest(ArrayList<String> method) {
         int finalIfScore = 0;
         ArrayList<Integer> allIfLocations = new ArrayList<>();
@@ -250,6 +243,7 @@ public class CyclomaticTest {
         return finalIfScore;
     }
 
+    //JK *IN PROGRESS*
     public void ifTestRecursion(int startPos, ArrayList<String> method){
         int lineIterator = startPos - 3;
         finalIfList.add("if");
@@ -354,6 +348,47 @@ public class CyclomaticTest {
         }
     }
 
+    public int ifTestTwo(ArrayList<String> method)
+    {
+        int score = 0;
+        String thisLine = "";
+        String nextLine = "";
+        for (int i = 0; i < method.size(); i++) 
+        {
+            thisLine = method.get(i);
+            if (i < method.size() - 1) 
+            {
+                nextLine = method.get(i + 1);
+            }
+            if (thisLine.contains("if") || (thisLine.contains("{") || nextLine.contains("{")))
+            {
+            String[] arrOfStr = thisLine.split(" ", 0); // removes spaces and splits words
+                if (arrOfStr[0].contains("if")) 
+                {
+                    score++;
+                }
+            }
+            if (thisLine.contains("else if") || (thisLine.contains("{") || nextLine.contains("{")))
+            {
+                String[] arrOfStr = thisLine.split(" ", 0); // removes spaces and splits words
+                if (arrOfStr.length<1)
+                { 
+                    if (arrOfStr[0].contains("else")||arrOfStr[1].contains("else")) 
+                    {
+                        score++;
+                    }
+                }
+                else 
+                {
+                    if (arrOfStr[0].contains("else")) 
+                    {
+                        score++;
+                    }
+                }
+            }
+        }
+        return score;
+    }
     // JM
     public int caseTest(ArrayList<String> method) {
 
@@ -387,7 +422,7 @@ public class CyclomaticTest {
         return score;
     }
 
-    // JK
+    // JK *IN PROGRESS*
     public int whileTest(ArrayList<String> method) { // Picks up 2 on getGameState on testcode 2, assume this is part of the main method that James is working on (To make it avoid)
         int finalWhileScore = 0;
 
@@ -408,7 +443,7 @@ public class CyclomaticTest {
         return 0;
     }
 
-    // JK
+    // JK *IN PROGRESS*
     public int breakTest(ArrayList<String> method) {
         int finalBreakScore = 0;
 
@@ -462,7 +497,8 @@ public class CyclomaticTest {
                     if (arrOfStr1.length == 1) 
                     {
                         score++;
-                    } else 
+                    } 
+                    else 
                     {
                         for (int j = 0; j < arrOfStr1.length - 1; j++) 
                         { // iterates for each space between elements
