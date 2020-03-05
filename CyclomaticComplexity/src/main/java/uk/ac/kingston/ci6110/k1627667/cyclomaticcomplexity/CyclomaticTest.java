@@ -351,21 +351,26 @@ public class CyclomaticTest {
             {
                 nextLine = method.get(i + 1);
             }
-            if (thisLine.contains("if") || (thisLine.contains("{") || nextLine.contains("{")))
+            if (thisLine.contains("if") &&((thisLine.contains("{") || nextLine.contains("{"))))
             {
+             //   System.out.println(method.get(i)); //debug
+
             String[] arrOfStr = thisLine.split(" ", 0); // removes spaces and splits words
                 if (arrOfStr[0].contains("if")) 
                 {
+                  //  System.out.println(method.get(i)); //debug
                     score++;
                 }
             }
-            if (thisLine.contains("else if") || (thisLine.contains("{") || nextLine.contains("{")))
+            if (thisLine.contains("else if") &&((thisLine.contains("{") || nextLine.contains("{"))))
             {
+             //  System.out.println(method.get(i)); //debug
                 String[] arrOfStr = thisLine.split(" ", 0); // removes spaces and splits words
                 if (arrOfStr.length<1)
                 { 
                     if (arrOfStr[0].contains("else")||arrOfStr[1].contains("else")) 
                     {
+                      //  System.out.println(method.get(i)); //debug
                         score++;
                     }
                 }
@@ -373,6 +378,7 @@ public class CyclomaticTest {
                 {
                     if (arrOfStr[0].contains("else")) 
                     {
+                       // System.out.println(method.get(i)); //debug
                         score++;
                     }
                 }
