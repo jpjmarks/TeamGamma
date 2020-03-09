@@ -171,6 +171,7 @@ public class CyclomaticTest {
         return method;
     }
 
+    //JK - Complete
     public ArrayList<String> variableTest(ArrayList<String> method) {
         //if, else, case, break, default, for, while, continue, do, catch, throw, return, finally
 
@@ -181,30 +182,38 @@ public class CyclomaticTest {
 
             if(currentLine.contains("int") || currentLine.contains("String") || currentLine.contains("byte") || currentLine.contains("short") || currentLine.contains("long") || currentLine.contains("float") || currentLine.contains("double") || currentLine.contains("char") || currentLine.contains("boolean"))
             {
-              //  System.out.println("I got here"); //debug
+                //System.out.println("I got here"); //debug
                 String[] cutString = currentLine.split(" ");
                 int arrLength = cutString.length;
 
                 for(int x = 0; x < arrLength; x++) //Find variable declaration and save the name of the variable
                 {
-                    if(cutString[x] == "int" || cutString[x] == "String" || cutString[x] == "byte" || cutString[x] == "short" || cutString[x] == "long" || cutString[x] == "float" || cutString[x] == "double" || cutString[x] == "char" || cutString[x] == "boolean")
+                    if(cutString[x].contains("int") || cutString[x].contains("String") || cutString[x].contains("byte") || cutString[x].contains("short") || cutString[x].contains("long") || cutString[x].contains("float") || cutString[x].contains("double") || cutString[x].contains("char") || cutString[x].contains("boolean"))
                     {
-                        deletionName = cutString[x+1];
-                        x = arrLength;
-                       // System.out.println("I'm deleting: " + deletionName); //debug
+                        if(cutString[x].contains("System.out.println")){
+                        }else{
+                            //System.out.println(cutString[x]);
+                            deletionName = cutString[x+1];
+                            x = arrLength;
+                            //System.out.println("I'm deleting: " + deletionName + " at line " + (i+3)); //debug
+    
+                            for(int y = 0; y < method.size(); y++) //Change variable names to, "null"
+                            {
+                                String deleteLine = method.get(y);
+            
+                                if(deleteLine.contains(deletionName))
+                                {
+                                    deleteLine = deleteLine.replace(deletionName, "banana");
+                                    method.set(y, deleteLine);
+                                    //System.out.println("Deleted"); //debug
+                                }
+            
+                                
+                            }
+                        }
+
                     }
                 }
-
-                for(int x = 0; x < method.size(); x++) //Change variable names to, "null"
-                {
-                    String deleteLine = method.get(x);
-
-                    if(deleteLine.contains(deletionName))
-                    {
-                        deleteLine.replace(deletionName, "null");
-                    }
-                }
-
 
             }
         }
