@@ -29,6 +29,11 @@ public class Board
     return gameState;
   }
 
+  if(a=b)
+    do something;
+
+    
+
   public void setGameState(String gameState) {
     this.gameState = gameState;
   }

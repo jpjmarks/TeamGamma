@@ -13,10 +13,16 @@ public class CyclomaticTest {
     // JM
     public ArrayList<ArrayList<String>> cycloTests(ArrayList<String> file) 
     {
-        ArrayList<ArrayList<String>> methods = (ArrayList<ArrayList<String>>) seaparateMethods(file).clone();
-        // creates arraylist of arraylists output by separatemethods method
-       ArrayList<ArrayList<String>> scores = new ArrayList<ArrayList<String>>();
-        for (int i = 0; i < methods.size(); i++) // iterates through methods array list ignoring the first element which is the name of the method
+        ArrayList<ArrayList<String>> methods = (ArrayList<ArrayList<String>>) seaparateMethods(file); // creates arraylist of arraylists output by separatemethods method
+        ArrayList<ArrayList<String>> scores = new ArrayList<ArrayList<String>>();
+        scores.add(new ArrayList<String>()); // adds a new array list to the output 2d array
+        scores.get(0).add("Total Scores"); // adds total score to an array to dispaly as the result.
+        scores.get(0).add("Overall Complexity: "); // adds total score to an array to dispaly as the result.
+        scores.get(0).add("Number of Mehods: "); // adds total score to an array to dispaly as the result.
+        scores.get(0).add("Number of Lines: "); // adds total score to an array to dispaly as the result.
+        scores.get(0).add("Number of Comments: "); // adds total score to an array to dispaly as the result.
+
+        for (int i = 1; i < methods.size()+1; i++) // iterates through methods array list ignoring the first element which is the name of the method
         {
             scores.add(new ArrayList<String>()); // adds a new array list to the output 2d array
             scores.get(i).add(methods.get(i).get(0)); // adds total score to an array to dispaly as the result.
@@ -386,12 +392,7 @@ public class CyclomaticTest {
         }
         return score;
     }
-    // JM
-    public int caseTest(ArrayList<String> method) {
-
-        return 0;
-    }
-
+   
     // JK
     public int defaultTest(ArrayList<String> method) {
 
@@ -527,6 +528,12 @@ public class CyclomaticTest {
         }
         return score;
     }
+ 
+    // JM
+    public int caseTest(ArrayList<String> method) {
+
+        return 0;
+    }
 
     // JM
     public int ternaryTest(ArrayList<String> method) {
@@ -539,5 +546,6 @@ public class CyclomaticTest {
 
         return 0;
     }
+
 
 }
