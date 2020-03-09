@@ -23,40 +23,29 @@ public class Board
     String andtest = "&&"; //&&
     String ternarytest = "?"; //?
     String returnest = "return"; //return
-
     return gameState;
   }
-
-  
   if(a=b)
     do something;
-
-
-
   public void setGameState(String gameState) {
     this.gameState = gameState;
   }
-
   public int getCount() 
   {
     return count;
   }
-  
   public void setCount(int count) 
   {
     this.count = count;
   }
-
   public String getSquare(int y, int x) 
   {	 	      	  	       	      	      	       	
     return this.square[y][x];	 	      	  	       	      	      	       	
   }	 	
-
   public void setSquare(int y, int x, String player)	 	      	  	       	      	      	       	
   {	 	      	  	       	      	      	       	
     this.square[y][x] = "["+player+"]";	 	      	  	       	      	      	       	
   }
-  
   public int placeMove(int y, int x, String gamePiece, int turns)	 	      	  	       	      	      	       	
   {	 	 
     if (y>0 && y<5 && x>0 && x<5)
@@ -81,7 +70,6 @@ public class Board
     }	 
     return turns;     	  	       	      	      	       	
   }	
-
   public void drawBoard()	 	      	  	       	      	      	       	
   {	 	      	  	       	      	      	       	
     for (int y = 0; y < 5; y++)	 	      	  	       	      	      	       	
@@ -97,7 +85,6 @@ public class Board
       }	 	      	  	       	      	      	       	
     }	 	      	  	       	      	      	       	
   }
-
   public void winCheck()	 	      	  	       	      	      	       	
   {	 	      	  	       	      	      	       	
     for (int i=1; i<5; i++)	 	      	  	       	      	      	       	
@@ -124,7 +111,6 @@ public class Board
       this.setGameState("Draw");
     }     	  	       	      	      	       	
   }	 	
-
   public void resetBoard()
   {
     this.count=0;

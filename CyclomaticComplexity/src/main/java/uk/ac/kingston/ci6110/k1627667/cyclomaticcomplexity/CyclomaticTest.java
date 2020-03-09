@@ -19,9 +19,6 @@ public class CyclomaticTest {
         scores.get(0).add("Number of Lines: "); 
         scores.get(0).add("Number of Comments: ");
         scores.get(0).add("");
-
-
-
         for (int j = 0; j < methods.size(); j++) // iterates through methods array list ignoring the first element which is the name of the method
         {
             int i = j+1;
@@ -32,6 +29,8 @@ public class CyclomaticTest {
             // System.out.println(methods.get(i)); //debug
             int thisTest = 0;
             methods.set(j, commentTest(methods.get(j))); // comment and string tests to remove any mentions of trigger words
+            methods.set(j, variableTest(methods.get(j))); // variable names tests to remove any mentions of trigger words
+
             // each of the following lines runs each individual test on each arraly list
             // returning the score for each test
             // possibly display the scores for individual tests later
@@ -137,7 +136,7 @@ public class CyclomaticTest {
             {
                 if (methodNames.size() > 0) // checks if this is the first method in the file
                 {
-                    methodEndLinesList.add(i+1); // adds end line of previous method to array
+                    methodEndLinesList.add(i-1); // adds end line of previous method to array
                 }
                 String[] arrOfStr = tempString.split(" ", 0); // removes spaces and splits words
                 if (arrOfStr[2].contains("(")) { // checks if the 3rd element contains ( as most methods will have this or the will not run
@@ -153,7 +152,7 @@ public class CyclomaticTest {
                 outArray.get(methodNames.size() - 1).add(tempString);
             }
             if (i == file.size() - 1) {
-                methodEndLinesList.add(i+1);
+                methodEndLinesList.add(i);
             }
         }
 
@@ -182,7 +181,7 @@ public class CyclomaticTest {
 
             if(currentLine.contains("int") || currentLine.contains("String") || currentLine.contains("byte") || currentLine.contains("short") || currentLine.contains("long") || currentLine.contains("float") || currentLine.contains("double") || currentLine.contains("char") || currentLine.contains("boolean"))
             {
-                System.out.println("I got here");
+              //  System.out.println("I got here"); //debug
                 String[] cutString = currentLine.split(" ");
                 int arrLength = cutString.length;
 
@@ -192,7 +191,7 @@ public class CyclomaticTest {
                     {
                         deletionName = cutString[x+1];
                         x = arrLength;
-                        System.out.println("I'm deleting: " + deletionName); //debug
+                       // System.out.println("I'm deleting: " + deletionName); //debug
                     }
                 }
 
@@ -227,7 +226,7 @@ public class CyclomaticTest {
             }
             if (thisLine.contains("if") &&((thisLine.contains("{") || nextLine.contains("{"))))
             {
-             //   System.out.println(method.get(i)); //debug
+              System.out.println(method.get(i)); //debug
 
             String[] arrOfStr = thisLine.split(" ", 0); // removes spaces and splits words
                 if (arrOfStr[0].contains("if")) 
