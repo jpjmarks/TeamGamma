@@ -6,14 +6,23 @@ import java.util.ArrayList;
 
 public class CyclomaticTest {
     int commentScore = 0;
-
     // JM
     public ArrayList<ArrayList<String>> cycloTests(ArrayList<String> file) 
     {
-        ArrayList<ArrayList<String>> methods = (ArrayList<ArrayList<String>>) seaparateMethods(file).clone();
-        // creates arraylist of arraylists output by separatemethods method
-       ArrayList<ArrayList<String>> scores = new ArrayList<ArrayList<String>>();
-        for (int i = 0; i < methods.size(); i++) // iterates through methods array list ignoring the first element which is the name of the method
+        int totalComplexity = 0;
+        ArrayList<ArrayList<String>> methods = (ArrayList<ArrayList<String>>) seaparateMethods(file); // creates arraylist of arraylists output by separatemethods method
+        ArrayList<ArrayList<String>> scores = new ArrayList<ArrayList<String>>();
+        scores.add(new ArrayList<String>()); // adds a new array list to the output 2d array
+        scores.get(0).add("Total Scores"); 
+        scores.get(0).add("Overall Complexity: "); 
+        scores.get(0).add("Number of Mehods: "+ methods.size());
+        scores.get(0).add("Number of Lines: "); 
+        scores.get(0).add("Number of Comments: ");
+        scores.get(0).add("");
+
+
+
+        for (int i = 1; i < methods.size()+1; i++) // iterates through methods array list ignoring the first element which is the name of the method
         {
             scores.add(new ArrayList<String>()); // adds a new array list to the output 2d array
             scores.get(i).add(methods.get(i).get(0)); // adds total score to an array to dispaly as the result.
@@ -68,10 +77,15 @@ public class CyclomaticTest {
             thisTest = returnTest(methods.get(i));
             scores.get(i).add("Return statements increased this methods score by: " + thisTest); // adds total score to an array to dispaly as the result.
             runningTotal = runningTotal + returnTest(methods.get(i));
+            totalComplexity = totalComplexity + runningTotal;
             scores.get(i).set(0, methods.get(i).get(0) + " has a cyclomatic Score of : " + Integer.toString(runningTotal)); // adds total score to an array to dispaly as the result.
             scores.get(i).add("");
         }
 
+        scores.get(0).set(0,"Total Scores"); 
+        scores.get(0).set(1,"Overall Complexity: " + totalComplexity); 
+        scores.get(0).set(3, "Number of Lines: " + file.size());
+        scores.get(0).set(4, "Number of Comments: ");
         return scores; // returns the array of scores
     }
 
@@ -244,12 +258,7 @@ public class CyclomaticTest {
         }
         return score;
     }
-    // JM
-    public int caseTest(ArrayList<String> method) {
-
-        return 0;
-    }
-
+   
     // JK
     public int defaultTest(ArrayList<String> method) {
 
@@ -391,6 +400,12 @@ public class CyclomaticTest {
         }
         return score;
     }
+ 
+    // JM
+    public int caseTest(ArrayList<String> method) {
+
+        return 0;
+    }
 
     // JM
     public int ternaryTest(ArrayList<String> method) {
@@ -403,7 +418,4 @@ public class CyclomaticTest {
 
         return 0;
     }
-
-
-
 }
