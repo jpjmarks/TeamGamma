@@ -4,11 +4,9 @@ public class Board
   private String[][] square = new String[5][5];
   private int count;
   private String gameState;
-
   public Board() {
     this.resetBoard();
   }
-
   public String getGameState() {
     String iftest = "if"; //if
     String casetest = "case"; //case
@@ -29,10 +27,11 @@ public class Board
     return gameState;
   }
 
+  
   if(a=b)
     do something;
 
-    
+
 
   public void setGameState(String gameState) {
     this.gameState = gameState;

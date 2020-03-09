@@ -59,7 +59,6 @@ public class Main
                     {
                         tryCheck = false;
                     }
-
                      try
                     {
                         xCo = Integer.parseInt(xCoord);
@@ -69,7 +68,6 @@ public class Main
                         tryCheck = false;
                         System.out.println("exception");
                     }
-
                     if(yCo < 1 || yCo > 4 || xCo < 1 || xCo > 4 && tryCheck)
                     {
                         System.out.println("Column and rows needs to be between 1 to 4");
@@ -85,7 +83,6 @@ public class Main
                         p1.addScore();
                     }  
                 }
-                
                 else if(turnCounter==3||turnCounter==4)
                 {
                     xCoord = "";
@@ -106,7 +103,6 @@ public class Main
                     {
                         tryCheck = false;
                     }
-
                      try
                     {
                         xCo = Integer.parseInt(xCoord);
@@ -116,7 +112,6 @@ public class Main
                         tryCheck = false;
                         break;
                     }
-                    
                     if(xCo < 1 || xCo > 4 || yCo < 1 || yCo > 4 && tryCheck)
                     {
                         System.out.println("Column and rows needs to be between 1 to 4");
