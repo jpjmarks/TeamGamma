@@ -1,63 +1,21 @@
 import java.util.Scanner;	 
-
-
-
 public class Main
-
-
 {
-
-
     public static void main(String args[])
-
-
     {
-
-
-
         Board board = new Board();
-
-
         Player p1 = new Player("X");
-
-
         Player p2 = new Player("O");
-
-
         Scanner input = new Scanner(System.in);
-
-
         System.out.println("What is Player one's name?");
-
-        
         p1.setName(input.nextLine());
-
-
         System.out.println("Player one's name is "+p1.getName());
-
-
         System.out.println("What is Player two's name?");
-
-
         p2.setName(input.nextLine());
-
-
         System.out.println("Player two's name is "+p2.getName());
-
-
         String p1Name = p1.getName();
-
-
         String p2Name = p2.getName();
-
-        
         String gameState = board.getGameState();
-
-
-
-
-
-
         p1.setGamePiece("X");
         p2.setGamePiece("O");
         String p1GP = p1.getGamePiece();
@@ -81,11 +39,6 @@ public class Main
             }
             while (gameState.equals("In Play"))
             {
-                
-
-
-
-
                 if(turnCounter==1||turnCounter==2)
                 {
                     xCoord = "";
@@ -106,7 +59,6 @@ public class Main
                     {
                         tryCheck = false;
                     }
-
                      try
                     {
                         xCo = Integer.parseInt(xCoord);
@@ -151,7 +103,6 @@ public class Main
                     {
                         tryCheck = false;
                     }
-
                      try
                     {
                         xCo = Integer.parseInt(xCoord);
@@ -161,7 +112,6 @@ public class Main
                         tryCheck = false;
                         break;
                     }
-                    
                     if(xCo < 1 || xCo > 4 || yCo < 1 || yCo > 4 && tryCheck)
                     {
                         System.out.println("Column and rows needs to be between 1 to 4");

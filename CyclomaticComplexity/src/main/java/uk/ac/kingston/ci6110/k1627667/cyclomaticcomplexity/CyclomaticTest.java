@@ -5,10 +5,7 @@ import java.util.ArrayList;
  */
 
 public class CyclomaticTest {
-    //Needed for IF testing, much easier with visibility
-    ArrayList<Integer> usedElseIfs = new ArrayList<>();
-    ArrayList<Integer> usedElses = new ArrayList<>();
-    ArrayList<String> finalIfList = new ArrayList<>();
+    int commentScore = 0;
     // JM
     public ArrayList<ArrayList<String>> cycloTests(ArrayList<String> file) 
     {
@@ -170,6 +167,48 @@ public class CyclomaticTest {
     // JK
     // added code to testcode2 in method getGameState to help test this
     public ArrayList<String> commentTest(ArrayList<String> method) {
+        //Censor comments
+        //count comments (commentCount)
+        return method;
+    }
+
+    public ArrayList<String> variableTest(ArrayList<String> method) {
+        //if, else, case, break, default, for, while, continue, do, catch, throw, return, finally
+
+        for(int i = 0; i < method.size(); i++)
+        {
+            String deletionName = "";
+            String currentLine = method.get(i);
+
+            if(currentLine.contains("int") || currentLine.contains("String") || currentLine.contains("byte") || currentLine.contains("short") || currentLine.contains("long") || currentLine.contains("float") || currentLine.contains("double") || currentLine.contains("char") || currentLine.contains("boolean"))
+            {
+                System.out.println("I got here");
+                String[] cutString = currentLine.split(" ");
+                int arrLength = cutString.length;
+
+                for(int x = 0; x < arrLength; x++) //Find variable declaration and save the name of the variable
+                {
+                    if(cutString[x] == "int" || cutString[x] == "String" || cutString[x] == "byte" || cutString[x] == "short" || cutString[x] == "long" || cutString[x] == "float" || cutString[x] == "double" || cutString[x] == "char" || cutString[x] == "boolean")
+                    {
+                        deletionName = cutString[x+1];
+                        x = arrLength;
+                        System.out.println("I'm deleting: " + deletionName); //debug
+                    }
+                }
+
+                for(int x = 0; x < method.size(); x++) //Change variable names to, "null"
+                {
+                    String deleteLine = method.get(x);
+
+                    if(deleteLine.contains(deletionName))
+                    {
+                        deleteLine.replace(deletionName, "null");
+                    }
+                }
+
+
+            }
+        }
 
         return method;
     }
@@ -254,9 +293,15 @@ public class CyclomaticTest {
         int finalWhileScore = 0;
 
         for (int i = 0; i < method.size(); i++) {
-            String tempString = method.get(i);
+            String thisLine = method.get(i);
+            String nextLine = "";
 
-            if (tempString.contains("while")) {
+            if(i != method.size() - 1)
+            {
+                nextLine = method.get(i+1);
+            }
+
+            if (thisLine.contains("while") && (thisLine.contains("{") || nextLine.contains("{"))) {
                 finalWhileScore++;
             }
         }
@@ -277,7 +322,7 @@ public class CyclomaticTest {
         for (int i = 0; i < method.size(); i++) {
             String tempString = method.get(i);
 
-            if (tempString.contains("break")) {
+            if (tempString.contains("break") && tempString.contains(";")) {
                 finalBreakScore++;
             }
         }
@@ -375,5 +420,4 @@ public class CyclomaticTest {
 
         return 0;
     }
-
 }
