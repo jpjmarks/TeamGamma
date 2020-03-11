@@ -99,7 +99,7 @@ public class CyclomaticTest {
         scores.get(0).set(0,"Total Scores"); 
         scores.get(0).set(1,"Overall Complexity: " + totalComplexity); 
         scores.get(0).set(3, "Number of Lines: " + file.size());
-        scores.get(0).set(4, "Number of Comments: ");
+        scores.get(0).set(4, "Number of Comments: " + commentScore);
         return scores; // returns the array of scores
     }
 
