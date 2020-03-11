@@ -17,32 +17,26 @@ return *COMPLETE*
 output in main method somehow *COMPLETE*
 }
 
-JK
+JK *COMPLETE*
 if Statment (and one attacheced else or else if statment)
 further else if and else statements
 
 JM
 *case
 
-JK
-*default
-
 JM *COMPLETE*
 for loops
 
-JK
+JK *COMPLETE*
 while loops
 
-JM
+JM *COMPELTE*
 do-while
 
-JK
+JK *CHECKING EXACT COMPLEXITIES*
 break
 
-JM
-*continue
-
-JK
+JM *COMPLETE*
 catch
 
 JM

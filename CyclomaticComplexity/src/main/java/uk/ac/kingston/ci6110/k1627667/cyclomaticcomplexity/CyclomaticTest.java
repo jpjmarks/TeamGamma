@@ -29,22 +29,18 @@ public class CyclomaticTest {
             // System.out.println(methods.get(i)); //debug
             int thisTest = 0;
             methods.set(j, commentTest(methods.get(j))); // comment and string tests to remove any mentions of trigger words
-            methods.set(j, variableTest(methods.get(j))); // variable names tests to remove any mentions of trigger words
+            // methods.set(j, variableTest(methods.get(j))); // variable names tests to remove any mentions of trigger words
 
             // each of the following lines runs each individual test on each arraly list
             // returning the score for each test
             // possibly display the scores for individual tests later
 
-            thisTest = ifTestTwo(methods.get(j));
+            thisTest = ifTest(methods.get(j));
             scores.get(i).add("If, Else If, and Else statements increased this methods score by: " + thisTest); // adds total score to an array to dispaly as the result.
             runningTotal = runningTotal + thisTest;
 
             thisTest = caseTest(methods.get(j));
             scores.get(i).add("Case statements increased this methods score by: " + thisTest); // adds total score to an array to dispaly as the result.
-            runningTotal = runningTotal + thisTest;
-
-            thisTest = defaultTest(methods.get(j));
-            scores.get(i).add("Default statements increased this methods score by: " + thisTest); // adds total score to an array to dispaly as the result.
             runningTotal = runningTotal + thisTest;
 
             thisTest = forTest(methods.get(j));
@@ -59,24 +55,8 @@ public class CyclomaticTest {
             scores.get(i).add("Do While Loops increased this methods score by: " + thisTest); // adds total score to an array to dispaly as the result.
             runningTotal = runningTotal + thisTest;
 
-            thisTest = breakTest(methods.get(j));
-            scores.get(i).add("Break statements increased this methods score by: " + thisTest); // adds total score to an array to dispaly as the result.
-            runningTotal = runningTotal + thisTest;
-
-            thisTest = continueTest(methods.get(j));
-            scores.get(i).add("Continue statements increased this methods score by: " + thisTest); // adds total score to an array to dispaly as the result.
-            runningTotal = runningTotal + thisTest;
-
             thisTest = catchTest(methods.get(j));
             scores.get(i).add("Catch statements increased this methods score by: " + thisTest); // adds total score to an array to dispaly as the result.
-            runningTotal = runningTotal + thisTest;
-
-            thisTest = finallyTest(methods.get(j));
-            scores.get(i).add("Finally statements increased this methods score by: " + thisTest); // adds total score to an array to dispaly as the result.
-            runningTotal = runningTotal + thisTest;
-
-            thisTest = throwTest(methods.get(j));
-            scores.get(i).add("Throw statements increased this methods score by: " + thisTest); // adds total score to an array to dispaly as the result.
             runningTotal = runningTotal + thisTest;
 
             thisTest = andOrTest(methods.get(j));
@@ -221,7 +201,8 @@ public class CyclomaticTest {
         return method;
     }
 
-    public int ifTestTwo(ArrayList<String> method)
+    //JM *COMPLETE*
+    public int ifTest(ArrayList<String> method)
     {
         int score = 0;
         String thisLine = "";
@@ -268,13 +249,7 @@ public class CyclomaticTest {
         }
         return score;
     }
-   
-    // JK
-    public int defaultTest(ArrayList<String> method) {
-
-        return 0;
-    }
-
+    
     // JM *COMPLETE*
     public int forTest(ArrayList<String> method) {
         int score = 0;
@@ -296,7 +271,7 @@ public class CyclomaticTest {
         return score;
     }
 
-    // JK *IN PROGRESS*
+    // JK *COMPLETE*
     public int whileTest(ArrayList<String> method) { // Picks up 2 on getGameState on testcode 2, assume this is part of the main method that James is working on (To make it avoid)
         int finalWhileScore = 0;
 
@@ -317,49 +292,47 @@ public class CyclomaticTest {
         return finalWhileScore;
     }
 
-    // JM
-    public int doWhileTest(ArrayList<String> method) {
-
-        return 0;
-    }
-
-    // JK *IN PROGRESS*
-    public int breakTest(ArrayList<String> method) {
-        int finalBreakScore = 0;
-
+    // JM *COMPLETE*
+    public int doWhileTest(ArrayList<String> method) 
+    {
+        int score = 0;
+        String thisLine = "";
+        String nextLine = "";
         for (int i = 0; i < method.size(); i++) {
-            String tempString = method.get(i);
-
-            if (tempString.contains("break") && tempString.contains(";")) {
-                finalBreakScore++;
+            thisLine = method.get(i);
+            if (i < method.size() - 1) {
+                nextLine = method.get(i + 1);
+            }
+            if (thisLine.contains("do") && (thisLine.contains("{") || nextLine.contains("{")))
+            {
+                String[] arrOfStr = thisLine.split(" ", 0); // removes spaces and splits words
+                if (arrOfStr[0].equals("do")) {
+                    score++;
+                }
             }
         }
-        // System.out.println("Break Score = " + finalBreakScore); //debug
-        return finalBreakScore;
+        return score;
     }
 
-    // JM
-    public int continueTest(ArrayList<String> method) {
-
-        return 0;
-    }
-
-    // JK
+    // JM *COMPLETE
     public int catchTest(ArrayList<String> method) {
-
-        return 0;
-    }
-
-    // JM
-    public int finallyTest(ArrayList<String> method) {
-
-        return 0;
-    }
-
-    // JK
-    public int throwTest(ArrayList<String> method) {
-
-        return 0;
+        int score = 0;
+        String thisLine = "";
+        String nextLine = "";
+        for (int i = 0; i < method.size(); i++) {
+            thisLine = method.get(i);
+            if (i < method.size() - 1) {
+                nextLine = method.get(i + 1);
+            }
+            if (thisLine.contains("catch") && (thisLine.contains("{") || nextLine.contains("{")))
+            {
+                String[] arrOfStr = thisLine.split(" ", 0); // removes spaces and splits words
+                if (arrOfStr[0].equals("catch")) {
+                    score++;
+                }
+            }
+        }
+        return score;
     }
 
     // JM *COMPLETE*
