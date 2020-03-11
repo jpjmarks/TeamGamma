@@ -151,7 +151,7 @@ public class CyclomaticTest {
         return method;
     }
 
-    //JK - Complete
+    //JK *COMPLETE*
     public ArrayList<String> variableTest(ArrayList<String> method) {
         //if, else, case, break, default, for, while, continue, do, catch, throw, return, finally
 
@@ -314,7 +314,7 @@ public class CyclomaticTest {
         return score;
     }
 
-    // JM *COMPLETE
+    // JM *COMPLETE*
     public int catchTest(ArrayList<String> method) {
         int score = 0;
         String thisLine = "";
@@ -384,21 +384,63 @@ public class CyclomaticTest {
         return score;
     }
  
-    // JM
+    // JM *COMPLETE*
     public int caseTest(ArrayList<String> method) {
-
-        return 0;
+        int score = 0;
+        String thisLine = "";
+        for (int i = 0; i < method.size(); i++) {
+            thisLine = method.get(i);
+            if (thisLine.contains("case"))
+            {
+                String[] arrOfStr = thisLine.split(" ", 0); // removes spaces and splits words
+                if (arrOfStr[0].equals("case")) {
+                    score++;
+                }
+            }
+        }
+        return score;
     }
 
-    // JM
+    // JM *COMPLETE*
     public int ternaryTest(ArrayList<String> method) {
-
-        return 0;
+        int score = 0;
+        String thisLine = "";
+        for (int i = 0; i < method.size(); i++)
+         {
+            thisLine = method.get(i);
+            String[] arrOfStr = thisLine.split("",0); 
+            for (int j = 0; j < arrOfStr.length;j++)
+            {
+               if (arrOfStr[j].equals("?"))
+               {
+                   score++;
+               }
+            }
+        }
+        return score;
     }
 
-    // JK
+    // JM *COMPLETE*
     public int returnTest(ArrayList<String> method) {
-
-        return 0;
+        int score = 0;
+        String thisLine = "";
+        for (int i = 0; i < method.size(); i++) {
+            thisLine = method.get(i);
+            if (thisLine.contains("case"))
+            {
+                String[] arrOfStr = thisLine.split(" ", 0); // removes spaces and splits words
+                if (arrOfStr[0].equals("case")) {
+                    score++;
+                }
+            }
+        }
+        if (score > 0)
+        {
+            return (score-1);
+        }
+        else
+        {
+            return 0;
+        }
     }
 }
