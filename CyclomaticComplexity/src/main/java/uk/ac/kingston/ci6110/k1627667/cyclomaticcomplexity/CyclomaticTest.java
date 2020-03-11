@@ -10,6 +10,7 @@ public class CyclomaticTest {
     public ArrayList<ArrayList<String>> cycloTests(ArrayList<String> file) 
     {
         int totalComplexity = 0;
+        file = commentTest(file); // comment and string tests to remove any mentions of trigger words
         ArrayList<ArrayList<String>> methods = (ArrayList<ArrayList<String>>) seaparateMethods(file); // creates arraylist of arraylists output by separatemethods method
         ArrayList<ArrayList<String>> scores = new ArrayList<ArrayList<String>>();
         scores.add(new ArrayList<String>()); // adds a new array list to the output 2d array
@@ -26,9 +27,7 @@ public class CyclomaticTest {
             scores.get(i).add(methods.get(j).get(0)); // adds total score to an array to dispaly as the result.
             int runningTotal = 1; // running total opf the complexity, starting at 1 as all methods if runnable
                                   // will have a complexity of 0 even with no code
-            // System.out.println(methods.get(i)); //debug
             int thisTest = 0;
-            methods.set(j, commentTest(methods.get(j))); // comment and string tests to remove any mentions of trigger words
             // methods.set(j, variableTest(methods.get(j))); // variable names tests to remove any mentions of trigger words
 
             // each of the following lines runs each individual test on each arraly list
@@ -98,9 +97,9 @@ public class CyclomaticTest {
             {
                 if (methodNames.size() > 0) // checks if this is the first method in the file
                 {
-                    methodEndLinesList.add(i+1); // adds end line of previous method to array
+                    methodEndLinesList.add(i); // adds end line of previous method to array
                 }
-                methodStartLinesList.add(i-1); // adds start line of current method
+                methodStartLinesList.add(i+1); // adds start line of current method
                 // increases the number of methods by 1
                 methodNames.add("main"); // adds "main" to the array of method names
                 outArray.add(new ArrayList<String>()); // adds a new array list to the output 2d array
@@ -116,14 +115,13 @@ public class CyclomaticTest {
             {
                 if (methodNames.size() > 0) // checks if this is the first method in the file
                 {
-                    methodEndLinesList.add(i-1); // adds end line of previous method to array
+                    methodEndLinesList.add(i); // adds end line of previous method to array
                 }
                 String[] arrOfStr = tempString.split(" ", 0); // removes spaces and splits words
                 if (arrOfStr[2].contains("(")) { // checks if the 3rd element contains ( as most methods will have this or the will not run
-                    methodStartLinesList.add(i-1); // makes note of the line this method starts on
-                    //
+                    methodStartLinesList.add(i+1); // makes note of the line this method starts on
                     String[] arrOfStr2 = arrOfStr[2].split("\\(", 0);
-                    methodNames.add(arrOfStr2[0]);
+                    methodNames.add(arrOfStr2[0].trim());
                     outArray.add(new ArrayList<String>());
                     outArray.get(methodNames.size() - 1).add(methodNames.get(methodNames.size() - 1));
                 }
@@ -137,17 +135,59 @@ public class CyclomaticTest {
         }
 
         for (int i = 0; i < outArray.size(); i++) {
-            outArray.get(i).set(0, "Lines: " + methodStartLinesList.get(i) + " - " + methodEndLinesList.get(i)
-                    + " Method: " + methodNames.get(i));
+            outArray.get(i).set(0, "Lines: " + methodStartLinesList.get(i) + " - " + methodEndLinesList.get(i)+ " Method: " + methodNames.get(i));
         }
         return outArray;
     }
 
     // JK
     // added code to testcode2 in method getGameState to help test this
-    public ArrayList<String> commentTest(ArrayList<String> method) {
-        //Censor comments
-        //count comments (commentCount)
+    public ArrayList<String> commentTest(ArrayList<String> method) 
+    {
+        String thisLine = "";
+        boolean isComment = false;
+        for (int i = 0; i < method.size(); i++)
+        {
+            String outLine = "";
+            isComment = false;
+            thisLine = method.get(i);
+            String[] arrOfStr = thisLine.split("",0);
+            for (int j = 0; j < (arrOfStr.length);j++)
+            {
+                if(arrOfStr.length>j)
+                {
+                    if (arrOfStr[j].equals("/")&&arrOfStr[j+1].equals("*"))
+                    {
+                        commentScore++;
+                        isComment = true;
+                    }
+                    if (isComment && arrOfStr[j].equals("*")&&arrOfStr[j+1].equals("/"))
+                    {
+                        arrOfStr[j] = "";
+                        arrOfStr[j+1] = "";
+                        isComment = false;
+                    }
+                    else if (arrOfStr[j].equals("/")&&arrOfStr[j+1].equals("/"))
+                    {
+                        commentScore++;
+                        isComment = true;
+                    }
+                }
+                if (isComment)
+                {
+                    arrOfStr[j] = "";
+                }
+                outLine = outLine + arrOfStr[j];
+            }
+            method.set(i, outLine);
+        }        
+        return method;
+    }
+
+    public ArrayList<String> stringTest(ArrayList<String> method) {
+       
+       
+        //Censor Strings eg anything between "" or ''
         return method;
     }
 
@@ -162,7 +202,6 @@ public class CyclomaticTest {
 
             if(currentLine.contains("int") || currentLine.contains("String") || currentLine.contains("byte") || currentLine.contains("short") || currentLine.contains("long") || currentLine.contains("float") || currentLine.contains("double") || currentLine.contains("char") || currentLine.contains("boolean"))
             {
-                //System.out.println("I got here"); //debug
                 String[] cutString = currentLine.split(" ");
                 int arrLength = cutString.length;
 
@@ -172,11 +211,8 @@ public class CyclomaticTest {
                     {
                         if(cutString[x].contains("System.out.println")){
                         }else{
-                            //System.out.println(cutString[x]);
                             deletionName = cutString[x+1];
-                            x = arrLength;
-                            //System.out.println("I'm deleting: " + deletionName + " at line " + (i+3)); //debug
-    
+                            x = arrLength;    
                             for(int y = 0; y < method.size(); y++) //Change variable names to, "null"
                             {
                                 String deleteLine = method.get(y);
@@ -185,7 +221,6 @@ public class CyclomaticTest {
                                 {
                                     deleteLine = deleteLine.replace(deletionName, "banana");
                                     method.set(y, deleteLine);
-                                    //System.out.println("Deleted"); //debug
                                 }
             
                                 
@@ -216,24 +251,19 @@ public class CyclomaticTest {
             }
             if (thisLine.contains("if") &&((thisLine.contains("{") || nextLine.contains("{"))))
             {
-              System.out.println(method.get(i)); //debug
-
             String[] arrOfStr = thisLine.split(" ", 0); // removes spaces and splits words
                 if (arrOfStr[0].contains("if")) 
                 {
-                  //  System.out.println(method.get(i)); //debug
                     score++;
                 }
             }
             if (thisLine.contains("else if") &&((thisLine.contains("{") || nextLine.contains("{"))))
             {
-             //  System.out.println(method.get(i)); //debug
                 String[] arrOfStr = thisLine.split(" ", 0); // removes spaces and splits words
                 if (arrOfStr.length<1)
                 { 
                     if (arrOfStr[0].contains("else")||arrOfStr[1].contains("else")) 
                     {
-                      //  System.out.println(method.get(i)); //debug
                         score++;
                     }
                 }
@@ -241,7 +271,6 @@ public class CyclomaticTest {
                 {
                     if (arrOfStr[0].contains("else")) 
                     {
-                       // System.out.println(method.get(i)); //debug
                         score++;
                     }
                 }
@@ -288,7 +317,6 @@ public class CyclomaticTest {
                 finalWhileScore++;
             }
         }
-        // System.out.println("While Score = " + finalWhileScore); //debug
         return finalWhileScore;
     }
 
@@ -356,7 +384,6 @@ public class CyclomaticTest {
                         for (int j = 0; j < arrOfStr1.length - 1; j++) 
                         { // iterates for each space between elements
                             score++; // adds 1 to the score for each split
-                            // System.out.println(arrOfStr1[j]);// debug
                         }
                     }
                 }
@@ -373,7 +400,6 @@ public class CyclomaticTest {
                         for (int k = 0; k < arrOfStr2.length - 1; k++) 
                         { // iterates for each space between elements
                             score++; // adds 1 to the scroe for each split
-                            // System.out.println(arrOfStr2[k]);// debug
                         }
                     }
                 }

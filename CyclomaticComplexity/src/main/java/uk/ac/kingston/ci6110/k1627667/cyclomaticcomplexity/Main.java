@@ -38,7 +38,7 @@ public class Main
     {  
       for (int j =0;j<outArray.get(i).size();j++)
       {
-     System.out.println(outArray.get(i).get(j));     
+        System.out.println(outArray.get(i).get(j));     
       }
     }  
   }

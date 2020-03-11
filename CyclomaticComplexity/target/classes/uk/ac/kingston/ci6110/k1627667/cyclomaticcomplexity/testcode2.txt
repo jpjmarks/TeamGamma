@@ -24,7 +24,6 @@ public class Board
     String returnest = "return"; //return
     return gameState;
   }
-
   public void setGameState(String gameState) {
     this.gameState = gameState;
   }
@@ -39,8 +38,9 @@ public class Board
   public String getSquare(int y, int x) 
   {	 	      	  	       	      	      	       	
     return this.square[y][x];	 	      	  	       	      	      	       	
-  }	 	
-  public void setSquare(int y, int x, String player)	 	      	  	       	      	      	       	
+  }	 
+  	
+  public void setSquare/* some random stuff thats a comment*/(int y, int x, String player)	 	      	  	       	      	      	       	
   {	 	      	  	       	      	      	       	
     this.square[y][x] = "["+player+"]";	 	      	  	       	      	      	       	
   }
