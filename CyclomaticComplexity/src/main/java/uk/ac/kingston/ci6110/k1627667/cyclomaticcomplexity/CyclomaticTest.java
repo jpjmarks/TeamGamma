@@ -11,6 +11,7 @@ public class CyclomaticTest {
     {
         int totalComplexity = 0;
         file = commentTest(file); // comment and string tests to remove any mentions of trigger words
+      //  file = stringTest(file);
         ArrayList<ArrayList<String>> methods = (ArrayList<ArrayList<String>>) seaparateMethods(file); // creates arraylist of arraylists output by separatemethods method
         ArrayList<ArrayList<String>> scores = new ArrayList<ArrayList<String>>();
         scores.add(new ArrayList<String>()); // adds a new array list to the output 2d array
@@ -133,63 +134,116 @@ public class CyclomaticTest {
                 methodEndLinesList.add(i);
             }
         }
-
         for (int i = 0; i < outArray.size(); i++) {
             outArray.get(i).set(0, "Lines: " + methodStartLinesList.get(i) + " - " + methodEndLinesList.get(i)+ " Method: " + methodNames.get(i));
+        }
+        if (methodNames.size()==0)
+        {
+            methodNames.add("No Named Methods");
+            outArray.add(new ArrayList<String>()); // adds a new array list to the output 2d array
+            outArray.get(0).add("Lines: " + 1 + " - " + file.size()+ " Method: " + methodNames.get(0));
+            for (int i = 0; i < file.size();i++)
+            {
+                outArray.get(0).add(file.get(i));
+            }
         }
         return outArray;
     }
 
-    // JK
-    // added code to testcode2 in method getGameState to help test this
+    // JM
     public ArrayList<String> commentTest(ArrayList<String> method) 
     {
         String thisLine = "";
-        boolean isComment = false;
+        boolean lineComment = false;
+        boolean multiLineComment = false;
         for (int i = 0; i < method.size(); i++)
         {
             String outLine = "";
-            isComment = false;
+            lineComment = false;
             thisLine = method.get(i);
             String[] arrOfStr = thisLine.split("",0);
             for (int j = 0; j < (arrOfStr.length);j++)
             {
                 if(arrOfStr.length>j)
                 {
-                    if (arrOfStr[j].equals("/")&&arrOfStr[j+1].equals("*"))
+                    if (arrOfStr[j].equals("/") && arrOfStr[j+1].equals("*"))
                     {
                         commentScore++;
-                        isComment = true;
+                        multiLineComment = true;
                     }
-                    if (isComment && arrOfStr[j].equals("*")&&arrOfStr[j+1].equals("/"))
+                    else if (multiLineComment && arrOfStr[j].equals("*") && arrOfStr[j+1].equals("/"))
                     {
                         arrOfStr[j] = "";
                         arrOfStr[j+1] = "";
-                        isComment = false;
+                        multiLineComment = false;
                     }
                     else if (arrOfStr[j].equals("/")&&arrOfStr[j+1].equals("/"))
                     {
                         commentScore++;
-                        isComment = true;
+                        lineComment = true;
                     }
                 }
-                if (isComment)
+                if (lineComment || multiLineComment)
                 {
                     arrOfStr[j] = "";
                 }
                 outLine = outLine + arrOfStr[j];
             }
-            method.set(i, outLine);
+                method.set(i, outLine);
         }        
         return method;
     }
 
     public ArrayList<String> stringTest(ArrayList<String> method) {
-       
-       
-        //Censor Strings eg anything between "" or ''
+        String thisLine = "";
+        boolean singleQuote = false;
+        boolean doubleQuote = false;
+
+        for (int i = 0; i < method.size(); i++)
+        {
+            String outLine = "";
+            String[] arrOfStr = thisLine.split("",0);
+            for (int j = 0; j < (arrOfStr.length);j++)
+            {
+                System.out.println(arrOfStr[j]);
+                if(arrOfStr.length>j)
+                { 
+                    if ("\"".equals(arrOfStr[j])&&!doubleQuote&&!singleQuote)
+                    {
+                        System.out.println("Double quote start found");
+                        doubleQuote = true;
+                    }
+                    else if ("\"".equals(arrOfStr[j])&&doubleQuote&&!singleQuote)
+                    {
+                        System.out.println("Double quote end found");
+
+                        doubleQuote = false;
+                    }
+                    else if ("\'".equals(arrOfStr[j])&&!doubleQuote&&!singleQuote)
+                    {
+                        System.out.println("Single quote start found");
+                        doubleQuote = true;
+                    }
+                    else if ("\'".equals(arrOfStr[j])&&!doubleQuote&&singleQuote)
+                    {
+                        System.out.println("Single quote end found");
+                        doubleQuote = false;
+                    }
+                }
+                if (singleQuote || doubleQuote)
+                {
+                    arrOfStr[j] = "*";
+                }
+                outLine = outLine + arrOfStr[j];
+            }
+            if (!outLine.equals(""))
+            {
+                method.set(i, outLine);
+            }
+        }        
         return method;
     }
+
 
     //JK *COMPLETE*
     public ArrayList<String> variableTest(ArrayList<String> method) {
@@ -266,7 +320,7 @@ public class CyclomaticTest {
                     {
                         score++;
                     }
-                }
+                } 
                 else 
                 {
                     if (arrOfStr[0].contains("else")) 

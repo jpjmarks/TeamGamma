@@ -4,7 +4,7 @@ public class Board
   private int count;
   private String gameState;
   public Board() {
-    this.resetBoard();
+  this.resetBoard();
   }
   public String getGameState() {
     String iftest = "if"; //if
@@ -22,7 +22,15 @@ public class Board
     String andtest = "&&"; //&&
     String ternarytest = "?"; //?
     String returnest = "return"; //return
+    whiletest = "{";
     return gameState;
+    /* a comment is here
+    yes this is a comment 
+    just one comment over
+    many lines. to test if
+    the comment deleter is
+    able to remove this
+    type of comment. */
   }
   public void setGameState(String gameState) {
     this.gameState = gameState;
@@ -39,7 +47,6 @@ public class Board
   {	 	      	  	       	      	      	       	
     return this.square[y][x];	 	      	  	       	      	      	       	
   }	 
-  	
   public void setSquare/* some random stuff thats a comment*/(int y, int x, String player)	 	      	  	       	      	      	       	
   {	 	      	  	       	      	      	       	
     this.square[y][x] = "["+player+"]";	 	      	  	       	      	      	       	
@@ -92,7 +99,6 @@ public class Board
     {
       System.out.println(line);
     }
-
     //case complextity should be 7
     int day = 4;
     switch (day) {
@@ -120,6 +126,7 @@ public class Board
     }
 
     //ternery
+    int num = 7;
     String msg = num > 10 ? "Number is greater than 10" : num > 7 ?  "Number is greater than 5" :
     num > 5 ? "Number is greater than 5" : "Number is less than equal to 5";
 
@@ -132,9 +139,6 @@ public class Board
     }
     while(i>1); 
   }
-
-
-
   public void winCheck()	 	      	  	       	      	      	       	
   {
     for (int i=1; i<5; i++)	 	      	  	       	      	      	       	
