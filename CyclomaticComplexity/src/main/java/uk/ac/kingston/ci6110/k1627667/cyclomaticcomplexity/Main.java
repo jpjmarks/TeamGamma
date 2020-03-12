@@ -13,6 +13,27 @@ public class Main
 
   public static void main(final String[] args) throws Exception 
   {
+
+    //constuct for lining to UI
+    // public void runTests(String pathName) {
+      
+    //   File file = new File(pathName);
+    //   CyclomaticTest newTest = new CyclomaticTest();
+    //   sc2 = new Scanner(file);
+    //   ArrayList<String> inArray = new ArrayList<String>();
+    //   ArrayList<ArrayList<String>> outArray = new ArrayList<ArrayList<String>>();
+    //   String tempString = "";
+    //   while (sc2.hasNextLine()) 
+    //   {
+    //     tempString = sc2.nextLine().trim();
+    //     if (!tempString.equals(""))
+    //     {
+    //     inArray.add(tempString);
+    //     }
+    //   }
+    // outArray = newTest.cycloTests(inArray);
+
+    // }
     //http://www.lizard.ws cyclo tester
     // File file = new File("/Users/kellacy/Documents/testcode.txt"); //John Test
     // File file = new File("/Users/kellacy/Documents/testcode2.txt"); //John Test

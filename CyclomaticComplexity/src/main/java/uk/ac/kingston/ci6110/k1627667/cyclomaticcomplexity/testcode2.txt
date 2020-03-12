@@ -124,12 +124,10 @@ public class Board
         System.out.println("Sunday");
         break;
     }
-
     //ternery
     int num = 7;
     String msg = num > 10 ? "Number is greater than 10" : num > 7 ?  "Number is greater than 5" :
     num > 5 ? "Number is greater than 5" : "Number is less than equal to 5";
-
     //do while
     int i=10;
     do

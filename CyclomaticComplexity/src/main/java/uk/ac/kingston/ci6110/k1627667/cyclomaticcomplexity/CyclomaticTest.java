@@ -11,15 +11,19 @@ public class CyclomaticTest {
     {
         int totalComplexity = 0;
         file = commentTest(file); // comment and string tests to remove any mentions of trigger words
-      //  file = stringTest(file);
+        file = stringTest(file);
         ArrayList<ArrayList<String>> methods = (ArrayList<ArrayList<String>>) seaparateMethods(file); // creates arraylist of arraylists output by separatemethods method
         ArrayList<ArrayList<String>> scores = new ArrayList<ArrayList<String>>();
         scores.add(new ArrayList<String>()); // adds a new array list to the output 2d array
-        scores.get(0).add("Total Scores"); 
+        scores.get(0).add("Total Scores");
         scores.get(0).add("Overall Complexity: "); 
-        scores.get(0).add("Number of Mehods: "+ methods.size());
+        scores.get(0).add("");
+        scores.get(0).add("Number of Mehods:");
+        scores.get(0).add(Integer.toString(methods.size()));
         scores.get(0).add("Number of Lines: "); 
+        scores.get(0).add("");
         scores.get(0).add("Number of Comments: ");
+        scores.get(0).add("");
         scores.get(0).add("");
         for (int j = 0; j < methods.size(); j++) // iterates through methods array list ignoring the first element which is the name of the method
         {
@@ -77,9 +81,9 @@ public class CyclomaticTest {
         }
 
         scores.get(0).set(0,"Total Scores"); 
-        scores.get(0).set(1,"Overall Complexity: " + totalComplexity); 
-        scores.get(0).set(3, "Number of Lines: " + file.size());
-        scores.get(0).set(4, "Number of Comments: " + commentScore);
+        scores.get(0).set(2,  Integer.toString(totalComplexity)); 
+        scores.get(0).set(6, Integer.toString(file.size()));
+        scores.get(0).set(8, Integer.toString(commentScore));
         return scores; // returns the array of scores
     }
 
@@ -202,44 +206,38 @@ public class CyclomaticTest {
         for (int i = 0; i < method.size(); i++)
         {
             String outLine = "";
+            thisLine = method.get(i);
             String[] arrOfStr = thisLine.split("",0);
             for (int j = 0; j < (arrOfStr.length);j++)
             {
-                System.out.println(arrOfStr[j]);
                 if(arrOfStr.length>j)
                 { 
                     if ("\"".equals(arrOfStr[j])&&!doubleQuote&&!singleQuote)
                     {
-                        System.out.println("Double quote start found");
                         doubleQuote = true;
                     }
                     else if ("\"".equals(arrOfStr[j])&&doubleQuote&&!singleQuote)
                     {
-                        System.out.println("Double quote end found");
-
                         doubleQuote = false;
+                        arrOfStr[j] = "";
                     }
                     else if ("\'".equals(arrOfStr[j])&&!doubleQuote&&!singleQuote)
                     {
-                        System.out.println("Single quote start found");
                         doubleQuote = true;
                     }
                     else if ("\'".equals(arrOfStr[j])&&!doubleQuote&&singleQuote)
                     {
-                        System.out.println("Single quote end found");
                         doubleQuote = false;
+                        arrOfStr[j] = "";
                     }
                 }
                 if (singleQuote || doubleQuote)
                 {
-                    arrOfStr[j] = "*";
+                    arrOfStr[j] = "";
                 }
                 outLine = outLine + arrOfStr[j];
             }
-            if (!outLine.equals(""))
-            {
-                method.set(i, outLine);
-            }
+            method.set(i, outLine);
         }        
         return method;
     }
