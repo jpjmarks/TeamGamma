@@ -36,9 +36,9 @@ public class Main
     // }
     //http://www.lizard.ws cyclo tester
     // File file = new File("/Users/kellacy/Documents/testcode.txt"); //John Test
-    // File file = new File("/Users/kellacy/Documents/testcode2.txt"); //John Test
+     File file = new File("/Users/kellacy/Documents/testcode2.txt"); //John Test
     //File file = new File("/Users/james/Documents/University/Y3/Dependable Systems/Team Gamma/TeamGamma/CyclomaticComplexity/src/main/java/uk/ac/kingston/ci6110/k1627667/cyclomaticcomplexity/testcode.txt"); // James Test File Location
-    File file = new File("/Users/james/Documents/University/Y3/Dependable Systems/Team Gamma/TeamGamma/CyclomaticComplexity/src/main/java/uk/ac/kingston/ci6110/k1627667/cyclomaticcomplexity/testcode2.txt"); // James Test File Location 2
+    //File file = new File("/Users/james/Documents/University/Y3/Dependable Systems/Team Gamma/TeamGamma/CyclomaticComplexity/src/main/java/uk/ac/kingston/ci6110/k1627667/cyclomaticcomplexity/testcode2.txt"); // James Test File Location 2
     CyclomaticTest newTest = new CyclomaticTest();
     sc2 = new Scanner(file);
     ArrayList<String> inArray = new ArrayList<String>();
@@ -57,11 +57,18 @@ public class Main
     {  
       for (int j =0;j<outArray.get(i).size();j++)
       {
-        System.out.println(outArray.get(i).get(j));     
+        System.out.println("i = " + i + ", j = " + j + " - " + outArray.get(i).get(j));     
       }
     }  
   }
 }
+
+//Number of lines = outArray.get(0).get(6);
+//Number of Methods = outArray.get(0).get(4);
+//Overall Complexity (Cyclomatic) = outArray.get(0).get(2);
+//Number of Comments = outArray.get(0).get(8);
+
+
 
 // formatting for windows file pathway
 // ("C:\\Users\\pankaj\\Desktop\\test.txt");
