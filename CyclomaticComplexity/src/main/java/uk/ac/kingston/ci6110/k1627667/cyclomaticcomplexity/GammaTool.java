@@ -46,17 +46,17 @@ public class GammaTool extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnBrowse = new javax.swing.JButton();
-        textPath = new javax.swing.JTextField();
+        browseButton = new javax.swing.JButton();
+        filePathPreview = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        codePreviewArea = new javax.swing.JTextArea();
+        halsteadCheckbox = new javax.swing.JCheckBox();
+        cyclomaticCheckbox = new javax.swing.JCheckBox();
+        commentQualityCheckbox = new javax.swing.JCheckBox();
+        numbersCheckbox = new javax.swing.JCheckBox();
+        otherCheckbox = new javax.swing.JCheckBox();
+        runTestButton = new javax.swing.JButton();
+        clearButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -121,69 +121,69 @@ public class GammaTool extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        btnBrowse.setText("Browse");
-        btnBrowse.addActionListener(new java.awt.event.ActionListener() {
+        browseButton.setText("Browse");
+        browseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBrowseActionPerformed(evt);
+                browseButtonActionPerformed(evt);
             }
         });
 
-        textPath.addActionListener(new java.awt.event.ActionListener() {
+        filePathPreview.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textPathActionPerformed(evt);
+                filePathPreviewActionPerformed(evt);
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        codePreviewArea.setColumns(20);
+        codePreviewArea.setRows(5);
+        jScrollPane1.setViewportView(codePreviewArea);
 
-        jCheckBox1.setText("Halstead");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        halsteadCheckbox.setText("Halstead");
+        halsteadCheckbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                halsteadCheckboxActionPerformed(evt);
             }
         });
 
-        jCheckBox2.setText("Cyclomatic");
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+        cyclomaticCheckbox.setText("Cyclomatic");
+        cyclomaticCheckbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
+                cyclomaticCheckboxActionPerformed(evt);
             }
         });
 
-        jCheckBox3.setText("Comment Quality");
-        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
+        commentQualityCheckbox.setText("Comment Quality");
+        commentQualityCheckbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox3ActionPerformed(evt);
+                commentQualityCheckboxActionPerformed(evt);
             }
         });
 
-        jCheckBox4.setText("Numbers");
-        jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
+        numbersCheckbox.setText("Numbers");
+        numbersCheckbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox4ActionPerformed(evt);
+                numbersCheckboxActionPerformed(evt);
             }
         });
 
-        jCheckBox5.setText("Other");
-        jCheckBox5.addActionListener(new java.awt.event.ActionListener() {
+        otherCheckbox.setText("Other");
+        otherCheckbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox5ActionPerformed(evt);
+                otherCheckboxActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Run Test");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        runTestButton.setText("Run Test");
+        runTestButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                runTestButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Clear");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        clearButton.setText("Clear");
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                clearButtonActionPerformed(evt);
             }
         });
 
@@ -196,20 +196,20 @@ public class GammaTool extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(textPath, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(filePathPreview, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBrowse, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
+                        .addComponent(browseButton, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox4)
-                            .addComponent(jCheckBox5)
-                            .addComponent(jCheckBox3)
-                            .addComponent(jCheckBox2)
-                            .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(numbersCheckbox)
+                            .addComponent(otherCheckbox)
+                            .addComponent(commentQualityCheckbox)
+                            .addComponent(cyclomaticCheckbox)
+                            .addComponent(halsteadCheckbox, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(runTestButton, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(clearButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -217,26 +217,26 @@ public class GammaTool extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnBrowse, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(textPath))
+                    .addComponent(browseButton, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(filePathPreview))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jCheckBox1)
+                        .addComponent(halsteadCheckbox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox2)
+                        .addComponent(cyclomaticCheckbox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox3)
+                        .addComponent(commentQualityCheckbox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox4)
+                        .addComponent(numbersCheckbox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox5))
+                        .addComponent(otherCheckbox))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(clearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(runTestButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -647,12 +647,14 @@ public class GammaTool extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        jTextArea1.setText("");
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
+        codePreviewArea.setText("");
+        filePathPreview.setText("");
+        filename = ""; //Reset file to check
+    }//GEN-LAST:event_clearButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (jCheckBox2.isSelected()) 
+    private void runTestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runTestButtonActionPerformed
+        if (cyclomaticCheckbox.isSelected()) 
         {
             File file = new File(filename);
             CyclomaticTest newTest = new CyclomaticTest();
@@ -691,53 +693,53 @@ public class GammaTool extends javax.swing.JFrame {
             String numComments = outArray.get(0).get(8);
             jLabel28.setText(numComments);   
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_runTestButtonActionPerformed
 
-    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
+    private void commentQualityCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commentQualityCheckboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox3ActionPerformed
+    }//GEN-LAST:event_commentQualityCheckboxActionPerformed
 
-    private void textPathActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPathActionPerformed
+    private void filePathPreviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filePathPreviewActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textPathActionPerformed
+    }//GEN-LAST:event_filePathPreviewActionPerformed
 
-    private void btnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseActionPerformed
+    private void browseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseButtonActionPerformed
         JFileChooser chooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Files","txt","java","xml");
         chooser.setFileFilter(filter);
         chooser.showOpenDialog(null);
         f = chooser.getSelectedFile();
         filename = f.getAbsolutePath();
-        textPath.setText(filename);
+        filePathPreview.setText(filename);
 
         try
         {
             FileReader reader = new FileReader(filename);
             BufferedReader br = new BufferedReader(reader);
-            jTextArea1.read(br, null);
+            codePreviewArea.read(br, null);
             br.close();
-            jTextArea1.requestFocus();
+            codePreviewArea.requestFocus();
         }
         catch(Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-    }//GEN-LAST:event_btnBrowseActionPerformed
+    }//GEN-LAST:event_browseButtonActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void halsteadCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_halsteadCheckboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_halsteadCheckboxActionPerformed
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+    private void cyclomaticCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cyclomaticCheckboxActionPerformed
         
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
+    }//GEN-LAST:event_cyclomaticCheckboxActionPerformed
 
-    private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
+    private void numbersCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numbersCheckboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox4ActionPerformed
+    }//GEN-LAST:event_numbersCheckboxActionPerformed
 
-    private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
+    private void otherCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otherCheckboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox5ActionPerformed
+    }//GEN-LAST:event_otherCheckboxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -775,16 +777,16 @@ public class GammaTool extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBrowse;
+    private javax.swing.JButton browseButton;
     private javax.swing.JMenuItem fileExit;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton runTestButton;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
+    private javax.swing.JButton clearButton;
+    private javax.swing.JCheckBox halsteadCheckbox;
+    private javax.swing.JCheckBox cyclomaticCheckbox;
+    private javax.swing.JCheckBox commentQualityCheckbox;
+    private javax.swing.JCheckBox numbersCheckbox;
+    private javax.swing.JCheckBox otherCheckbox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -843,7 +845,7 @@ public class GammaTool extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField textPath;
+    private javax.swing.JTextArea codePreviewArea;
+    private javax.swing.JTextField filePathPreview;
     // End of variables declaration//GEN-END:variables
 }
