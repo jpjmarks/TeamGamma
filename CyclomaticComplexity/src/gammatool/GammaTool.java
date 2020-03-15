@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package uk.ac.kingston.ci6110.k1627667.cyclomaticcomplexity;
+package gammatool;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -654,14 +654,15 @@ public class GammaTool extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (jCheckBox2.isSelected()) 
         {
-            File file = new File(filename);
+            System.out.println(f);
+            File file = new File(filename); 
             CyclomaticTest newTest = new CyclomaticTest();
             try {
-                sc2 = new Scanner(file);
+                sc2 = new Scanner(f);
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(GammaTool.class.getName()).log(Level.SEVERE, null, ex);
             }
-                    
+            
             ArrayList<String> inArray = new ArrayList<String>();
             ArrayList<ArrayList<String>> outArray = new ArrayList<ArrayList<String>>();
             String tempString = "";
@@ -707,7 +708,7 @@ public class GammaTool extends javax.swing.JFrame {
         chooser.setFileFilter(filter);
         chooser.showOpenDialog(null);
         f = chooser.getSelectedFile();
-        filename = f.getAbsolutePath();
+        String filename = f.getAbsolutePath();
         textPath.setText(filename);
 
         try
