@@ -1,0 +1,61 @@
+OutPut:
+Overall complexity
+Individual method complexity
+Number of Methods
+Number of Lines
+Number of Comments
+
+JM
+{
+     pass array list to test class
+iterate through the array list and separate by function/method *COMPLETE*
+create array list of each function/method *COMPLETE*
+test each of the functions/methods for each of the following; every instance of these adds one to the method *COMPLETE*
+Calculate total for each function/method *COMPLETE*
+add into array with function/method name *COMPELTE*
+return *COMPLETE*
+output in main method somehow *COMPLETE*
+}
+
+JK *COMPLETE*
+if Statment (and one attacheced else or else if statment)
+further else if and else statements
+
+JM
+*case
+
+JM *COMPLETE*
+for loops
+
+JK *COMPLETE*
+while loops
+
+JM *COMPELTE*
+do-while
+
+JK *CHECKING EXACT COMPLEXITIES*
+break
+
+JM *COMPLETE*
+catch
+
+JM
+*finally
+
+JK
+*throw, or throws clause
+
+JM *COMPLETE*
+Or (||) conditions
+And (&&) Conditons 
+
+JM
+*? : Conditions
+
+JK
+Returns	Each return that isn't the last statement of a method.
+
+JK
+Comment and string tests
+
+https://www.leepoint.net/principles_and_practices/complexity/complexity-java-method.html
