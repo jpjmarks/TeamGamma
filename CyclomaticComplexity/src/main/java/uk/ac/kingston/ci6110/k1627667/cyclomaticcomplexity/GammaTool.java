@@ -32,6 +32,7 @@ public class GammaTool extends javax.swing.JFrame {
     private static Scanner sc;
     private static Scanner sc2;
     private String filename;
+    ArrayList<ArrayList<String>> outArray = new ArrayList<ArrayList<String>>();
     private File f;
     public GammaTool() {
         initComponents();
@@ -664,13 +665,16 @@ public class GammaTool extends javax.swing.JFrame {
                 myWriter.write("File Tested: " + filename);
                 myWriter.write(System.getProperty("line.separator"));
                 myWriter.write(System.getProperty("line.separator"));
-                myWriter.write("Number of Lines: " + numberOfLinesOutput.getText());
-                myWriter.write(System.getProperty("line.separator"));
-                myWriter.write("Number of Methods: " + numberOfMethodsOutput.getText());
-                myWriter.write(System.getProperty("line.separator"));
-                myWriter.write("Cyclomatic Complexity Score: " + complexityOutput.getText()); 
-                myWriter.write(System.getProperty("line.separator"));
-                myWriter.write("Number of Comments: " + commentNumberOutput.getText());
+
+                for(int i = 0; i < outArray.size(); i++)
+                {
+                    for(int j = 0; j < outArray.get(i).size(); j++)
+                    {
+                        myWriter.write(outArray.get(i).get(j));
+                        myWriter.write(System.getProperty("line.separator"));
+                    }
+                }
+
                 myWriter.close();
                 System.out.println("Successfully wrote to file.");
             } catch (IOException e) {
@@ -697,7 +701,6 @@ public class GammaTool extends javax.swing.JFrame {
             }
                     
             ArrayList<String> inArray = new ArrayList<String>();
-            ArrayList<ArrayList<String>> outArray = new ArrayList<ArrayList<String>>();
             String tempString = "";
             while (sc2.hasNextLine()) 
             {

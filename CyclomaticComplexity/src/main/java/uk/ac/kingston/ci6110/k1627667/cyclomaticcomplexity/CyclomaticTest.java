@@ -168,7 +168,7 @@ public class CyclomaticTest {
             String[] arrOfStr = thisLine.split("",0);
             for (int j = 0; j < (arrOfStr.length);j++)
             {
-                if(arrOfStr.length>j)
+                if(arrOfStr.length-1>j)
                 {
                     if (arrOfStr[j].equals("/") && arrOfStr[j+1].equals("*"))
                     {
