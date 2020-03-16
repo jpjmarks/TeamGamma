@@ -18,6 +18,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.io.FileWriter;
 
 /**
  *
@@ -58,7 +59,7 @@ public class GammaTool extends javax.swing.JFrame {
         runTestButton = new javax.swing.JButton();
         clearButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        exportButton = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
@@ -76,16 +77,16 @@ public class GammaTool extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
+        numberOfLinesOutput = new javax.swing.JLabel();
+        commentNumberOutput = new javax.swing.JLabel();
+        numberOfMethodsOutput = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
+        complexityOutput = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
@@ -242,10 +243,10 @@ public class GammaTool extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Memory", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
 
-        jButton2.setText("Export");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        exportButton.setText("Export");
+        exportButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                exportButtonActionPerformed(evt);
             }
         });
 
@@ -268,7 +269,7 @@ public class GammaTool extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator1)
                     .addComponent(jSeparator2)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
+                    .addComponent(exportButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -282,7 +283,7 @@ public class GammaTool extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(exportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -315,11 +316,11 @@ public class GammaTool extends javax.swing.JFrame {
 
         jLabel14.setText("Comment Quality:");
 
-        jLabel27.setText("0");
+        numberOfLinesOutput.setText("0");
 
-        jLabel28.setText("0");
+        commentNumberOutput.setText("0");
 
-        jLabel29.setText("0");
+        numberOfMethodsOutput.setText("0");
 
         jLabel30.setText("0");
 
@@ -333,7 +334,7 @@ public class GammaTool extends javax.swing.JFrame {
 
         jLabel35.setText("0");
 
-        jLabel36.setText("0");
+        complexityOutput.setText("0");
 
         jLabel37.setText("0");
 
@@ -347,16 +348,16 @@ public class GammaTool extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel27))
+                        .addComponent(numberOfLinesOutput))
                     .addComponent(jLabel3)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel28))
+                        .addComponent(commentNumberOutput))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel29))
+                        .addComponent(numberOfMethodsOutput))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -378,7 +379,7 @@ public class GammaTool extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel36))
+                        .addComponent(complexityOutput))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -402,20 +403,20 @@ public class GammaTool extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel11)
-                    .addComponent(jLabel27)
+                    .addComponent(numberOfLinesOutput)
                     .addComponent(jLabel34))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel12)
-                    .addComponent(jLabel28)
+                    .addComponent(commentNumberOutput)
                     .addComponent(jLabel35))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel13)
-                    .addComponent(jLabel29)
-                    .addComponent(jLabel36))
+                    .addComponent(numberOfMethodsOutput)
+                    .addComponent(complexityOutput))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -633,7 +634,7 @@ public class GammaTool extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_fileExitActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void exportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportButtonActionPerformed
         JFrame parentFrame = new JFrame();
         
         JFileChooser fileChooser = new JFileChooser();
@@ -642,10 +643,41 @@ public class GammaTool extends javax.swing.JFrame {
         int userSelection = fileChooser.showSaveDialog(parentFrame);
         
         if (userSelection == JFileChooser.APPROVE_OPTION) {
+            //Create File and Get Location
             File fileToSave = fileChooser.getSelectedFile();
-            System.out.println("Save as File:" + fileToSave.getAbsolutePath());
+            try{
+                if (fileToSave.createNewFile() == true) {
+                    System.out.println("File created: " + fileToSave.getName());
+                } else {
+                    System.out.println("File already exists.");
+                }
+            }
+            catch (IOException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            }
+
+
+            //Write info to file
+            try {
+                FileWriter myWriter = new FileWriter(fileToSave);
+                myWriter.write("File Tested: " + filename);
+                myWriter.write(System.getProperty("line.separator"));
+                myWriter.write(System.getProperty("line.separator"));
+                myWriter.write("Number of Lines: " + numberOfLinesOutput.getText());
+                myWriter.write(System.getProperty("line.separator"));
+                myWriter.write("Number of Methods: " + numberOfMethodsOutput.getText());
+                myWriter.write(System.getProperty("line.separator"));
+                myWriter.write("Cyclomatic Complexity Score: " + complexityOutput.getText()); 
+                myWriter.write(System.getProperty("line.separator"));
+                myWriter.write("Number of Comments: " + commentNumberOutput.getText());
+                myWriter.close();
+                System.out.println("Successfully wrote to file.");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_exportButtonActionPerformed
 
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
         codePreviewArea.setText("");
@@ -679,19 +711,19 @@ public class GammaTool extends javax.swing.JFrame {
             
             //Number of lines
             String numLines = outArray.get(0).get(6);
-            jLabel27.setText(numLines);
+            numberOfLinesOutput.setText(numLines);
             
             //Numer of Methods
             String numMethods = outArray.get(0).get(4);
-            jLabel29.setText(numMethods);
+            numberOfMethodsOutput.setText(numMethods);
             
             //Overall Complexity
             String numComplexity = outArray.get(0).get(2);
-            jLabel36.setText(numComplexity);
+            complexityOutput.setText(numComplexity);
             
             //Number of Comments
             String numComments = outArray.get(0).get(8);
-            jLabel28.setText(numComments);   
+            commentNumberOutput.setText(numComments);   
         }
     }//GEN-LAST:event_runTestButtonActionPerformed
 
@@ -780,7 +812,7 @@ public class GammaTool extends javax.swing.JFrame {
     private javax.swing.JButton browseButton;
     private javax.swing.JMenuItem fileExit;
     private javax.swing.JButton runTestButton;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton exportButton;
     private javax.swing.JButton clearButton;
     private javax.swing.JCheckBox halsteadCheckbox;
     private javax.swing.JCheckBox cyclomaticCheckbox;
@@ -806,9 +838,9 @@ public class GammaTool extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel numberOfLinesOutput;
+    private javax.swing.JLabel commentNumberOutput;
+    private javax.swing.JLabel numberOfMethodsOutput;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
@@ -816,7 +848,7 @@ public class GammaTool extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel complexityOutput;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
