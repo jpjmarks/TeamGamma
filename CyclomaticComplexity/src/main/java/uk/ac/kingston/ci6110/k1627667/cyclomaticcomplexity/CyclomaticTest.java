@@ -18,7 +18,7 @@ public class CyclomaticTest {
         scores.get(0).add("Total Scores");
         scores.get(0).add("Overall Complexity: "); 
         scores.get(0).add("");
-        scores.get(0).add("Number of Mehods:");
+        scores.get(0).add("Number of Methods:");
         scores.get(0).add(Integer.toString(methods.size()));
         scores.get(0).add("Number of Lines: "); 
         scores.get(0).add("");
