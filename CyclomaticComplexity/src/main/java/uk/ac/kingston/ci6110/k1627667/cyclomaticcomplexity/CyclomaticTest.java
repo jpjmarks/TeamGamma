@@ -148,7 +148,10 @@ public class CyclomaticTest {
             outArray.get(0).add("Lines: " + 1 + " - " + file.size()+ " Method: " + methodNames.get(0));
             for (int i = 0; i < file.size();i++)
             {
+                if(!file.get(i).equals(""))
+                {
                 outArray.get(0).add(file.get(i));
+                }
             }
         }
         return outArray;

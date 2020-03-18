@@ -763,10 +763,8 @@ public class GammaTool extends javax.swing.JFrame {
             while (sc2.hasNextLine()) 
             {
             tempString = sc2.nextLine().trim();
-            if (!tempString.equals(""))
-            {
+           
             inArray.add(tempString);
-            }
             }
             outArray = newTest.cycloTests(inArray);
             
