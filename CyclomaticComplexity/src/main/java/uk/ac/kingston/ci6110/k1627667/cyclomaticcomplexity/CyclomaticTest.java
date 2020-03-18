@@ -507,10 +507,10 @@ public class CyclomaticTest {
         String thisLine = "";
         for (int i = 0; i < method.size(); i++) {
             thisLine = method.get(i);
-            if (thisLine.contains("case"))
+            if (thisLine.contains("return"))
             {
                 String[] arrOfStr = thisLine.split(" ", 0); // removes spaces and splits words
-                if (arrOfStr[0].equals("case")) {
+                if (arrOfStr[0].equals("return")) {
                     score++;
                 }
             }
