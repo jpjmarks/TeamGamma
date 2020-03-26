@@ -264,30 +264,24 @@ public class CyclomaticTest {
                 {
                     if(cutString[x].contains("int") || cutString[x].contains("String") || cutString[x].contains("byte") || cutString[x].contains("short") || cutString[x].contains("long") || cutString[x].contains("float") || cutString[x].contains("double") || cutString[x].contains("char") || cutString[x].contains("boolean"))
                     {
-                        if(cutString[x].contains("System.out.println")){
-                        }else{
+                        if(!cutString[x].contains("System.out.println"))
+                        {
                             deletionName = cutString[x+1];
                             x = arrLength;    
                             for(int y = 0; y < method.size(); y++) //Change variable names to, "null"
                             {
                                 String deleteLine = method.get(y);
-            
                                 if(deleteLine.contains(deletionName))
                                 {
                                     deleteLine = deleteLine.replace(deletionName, "banana");
                                     method.set(y, deleteLine);
                                 }
-            
-                                
                             }
                         }
-
                     }
                 }
-
             }
         }
-
         return method;
     }
 
@@ -358,21 +352,43 @@ public class CyclomaticTest {
     // JK *COMPLETE*
     public int whileTest(ArrayList<String> method) { // Picks up 2 on getGameState on testcode 2, assume this is part of the main method that James is working on (To make it avoid)
         int finalWhileScore = 0;
-
+        int openCount = 0;
+        int closeCount = 0;
+        boolean whileCheck = false;
         for (int i = 0; i < method.size(); i++) {
             String thisLine = method.get(i);
             String nextLine = "";
-
             if(i != method.size() - 1)
             {
                 nextLine = method.get(i+1);
             }
-
             if (thisLine.contains("while") && (thisLine.contains("{") || nextLine.contains("{"))) {
                 finalWhileScore++;
+                whileCheck = true;
+            }
+            if(thisLine.contains("{")&&whileCheck)
+            {
+                openCount++;
+            }
+            if(thisLine.contains("}")&&whileCheck)
+            {
+                closeCount++;
+            }
+            if (openCount==closeCount&&whileCheck)
+            {
+                openCount = 0;
+                closeCount = 0;
+                whileCheck = false;     
+            }
+            else
+            {
+                if(thisLine.contains("break"))
+                {
+
+                }
             }
         }
-        return finalWhileScore;
+    return finalWhileScore;
     }
 
     // JM *COMPLETE*
